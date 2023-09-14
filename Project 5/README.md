@@ -1,4 +1,6 @@
-# INTRODUCTION TO SHELL SCRIPTING AND USER INPUT
+# SHELL SCRIPTING HANDS-ON PROJECT
+
+## Inroduction to Shell Scripting and User Input
 
 Being familiar with the use of terminal from our experiences and previous projects, we can see that we carried out some tasks with certain commands which executed corresponding outputs.
 
@@ -470,5 +472,10 @@ echo "Backup completed. Files copied to: $backup_dir_with_timestamp"
 
 #####                         Running the Script
 <img width="989" alt="run timestamp" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ce33bc3a-cb8a-4fc0-8ecd-9414f859c3dc">
+
+
+Hurray!!!! Now we have been properly and practically introduced to shell scripting, taking user input and displaying output, directory manipulation and navigation, file operations and sorting, working with numbers and calculatiions, file backup and timestamping.
+
+---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
 
 
