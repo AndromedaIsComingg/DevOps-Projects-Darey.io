@@ -21,4 +21,7 @@ echo $name
 
 
 ##### - Control Flow:
-
+The flow of execution of a script can be controlled in bash. Statements like if-else, for loops and while loops can be used to make decision, iterate over lists and strings and execute differrent commands.
+##### Using bash to execute an if-else statement.
+We will begin this by creating a bash file named `if-else.sh` inside which we will input the following lines of code
+'''bash
