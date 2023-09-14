@@ -1,4 +1,4 @@
-# INRODUCTION TO SHELL SCRIPTING AND USER INPUT
+# INTRODUCTION TO SHELL SCRIPTING AND USER INPUT
 
 Being familiar with the use of terminal from our experiences and previous projects, we can see that we carried out some tasks with certain commands which executed corresponding outputs.
 
@@ -48,10 +48,12 @@ We will use the following command to write and exit the vi editor. `:wq!`
 
 <img width="500" alt="vi if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/133541eb-6d1c-4ead-bda2-c479cafcdc45">
 
+
 Now that we have our file created, we will grant the file execution permission in order the make the file executable
 we will be doing this with the command `chmod +x if-else.sh` before we run the file.
 
 <img width="404" alt="chmod if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c66fd936-b1a4-43f1-a994-f6983e9486ec">
+
 
 Now that we have made the file executable, we are going to run it using any of the following methods.
 
@@ -59,6 +61,7 @@ Now that we have made the file executable, we are going to run it using any of t
 By putting `bash` in front of the file name or `./` that is, `bash if-else.sh` or `./if-else.sh` after which we will input a number greater than zero, less than zero and also zero to test the script.
 
 <img width="351" alt="running if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/55cac7a3-6529-40f6-8168-1efe9e5162fe">
+
 
 ##### Iterating through a list using a for loop
 We will begin this by creating a bash file named `for-loop.sh` inside which we will input the following lines of code using any prefered text editor. For this we will be using the vi editor. Which is a script meant to display number 1 to 5 using a for loop.
@@ -76,6 +79,7 @@ done
 
 <img width="375" alt="touch for-loop" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/7a7e0ef0-4fd6-4c55-8d94-4efe758a10c0">
 
+
 We will use the following command to write and exit the vi editor. `:wq!`
 
 <img width="472" alt="vi for-loop" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/37cbdadc-310c-40d6-8177-73e1779cf251">
@@ -84,6 +88,24 @@ We will use the following command to write and exit the vi editor. `:wq!`
 Now using the same method as above to make the file executable, we will grant the file an execution privilage and then run the script file using same method as above.
 
 <img width="400" alt="run+chmod for-loop" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/3f1339bd-bad8-4599-8f16-3d7bec0994eb">
+
+
+##### - Command Substitution:
+This function allows us the capture the output of a command and used it as a value still within the script.
+
+This is done using the backtick or the $() syntax.
+
+Here is an example using the backtick ``` current_date=`date +%Y-%m-%d` ```
+
+and here using $() ```current_date=$(date +%Y-%m-%d)```
+
+For both cases, the command at the right hand side of the equality sign was substituted with the variable `current_date` such that it will be usable within the same script.
+
+<img width="471" alt="command sub" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/b55c84ee-a795-430a-9209-945231ceba5b">
+
+
+##### - Input and Output:
+Bash provides different ways of taking user input and displaying output. User input can be taken using the `read` command and displayed using the `echo` command. These input and output can be redirected using operators like, >(output to a file)>, >(input from a file)>, |(pipe the output of a command as input to another).
 
 
 
