@@ -107,10 +107,172 @@ For both cases, the command at the right hand side of the equality sign was subs
 ##### - Input and Output:
 Bash provides different ways of taking user input and displaying output. User input can be taken using the `read` command and displayed using the `echo` command. These input and output can be redirected using operators like, >(output to a file)>, >(input from a file)>, |(pipe the output of a command as input to another).
 
+###### We will run the following commands to :
+Accept user input: 
+`echo "Enter your name:"` (for this we will create a bash file named `name.sh` and edit with the vi editor)
+`read name`
+
+Output Text to Terminal:
+`echo "Hello World"` (this is also be executed in the same bash file named `name.sh`)
 
 
+<img width="195" alt="echo name" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/d63cbb18-001d-48ac-87b0-0fea4cfd7a0a">
 
 
+<img width="361" alt="name run" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ba00adb1-84e5-42b4-96f7-5c519f913ae0">
+
+
+Output the result of a command into a file:
+`echo "hello world" > index.txt`
+Then we will read the text file with the `cat` command for confirmation
+`cat index.txt`
+
+Pass the content of a file as input to a command
+`grep "pattern" < index.txt` (using the previously created index.txt file)
+
+Pass the result of a command as input to another command
+`echo "hello world" | grep "pattern"`
+
+<img width="497" alt="grep run" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/45687855-d1dd-4844-ae82-6f2922871b20">
+
+
+##### - Functions:
+A function or subroutine is a sequence of program instructions that performs a specific task, packaged as a unit. This unit can then be used in programs wherever that particular task should be performed. Bash allows us to declare a function by using the function keyword or by declaring the function name followed by parentheses.
+
+For example we will be writing a function to greet a user using the code below by creating a shell file named `greet.sh`
+
+```bash
+#!/bin/bash
+
+# Define a function to greet the user
+greet() {
+    echo "Hello, $1! Nice to meet you."
+}
+
+# Call the greet function and pass the name as an argument
+greet "John"
+```
+
+<img width="485" alt="vi john" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/54c4adde-a9b1-4fb7-b554-862030d49880">
+
+
+We will use the following command to write and exit the vi editor then run the script. `:wq!`
+
+<img width="373" alt="greet john" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c2f2ee19-7bc7-40f3-bb46-6d2626d04efd">
+
+
+## Writing a Shell Script
+- From terminal we are going to create a folder for this called "shell-scripting" where we will keep the scripts for the following operations. usinf the command `mkdir shell-scripting`
+- Then we will create a file called user-input with the command `touch user-input.sh`
+- In this file, using the vi editor we will paste the following code which is meant to take the name of a user and     display a greeting.
+
+  <img width="409" alt="shell 2nd fold" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/473610fa-155f-4ff5-9f81-1dd1d2b12359">
+
+
+```bash
+#!/bin/bash
+
+# Prompt the user for their name
+echo "Enter your name:"
+read name
+
+# Display a greeting with the entered name
+echo "Hello, $name! Nice to meet you."
+
+```
+- We will use the following command to write and exit the vi editor. `:wq!`
+
+
+- Now that we have our file created, we will grant the file execution permission in order the make the file            executable
+  we will be doing this with the command `chmod +x user-input.sh` before we run the file.
+
+
+- Now that we have made the file executable, we are going to run it using any of the following methods.
+
+
+  By putting `bash` in front of the file name or `./` that is, `bash user-input.sh` or `./user-input.sh`
+
+
+<img width="307" alt="vi user input 2" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/87688c14-cd0c-427d-b783-de70d584839f">
+
+
+<img width="406" alt="run name input" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/a7964a9e-4eb3-480a-b60d-1127fc4506b7">
+
+
+## Directory Manipulation and Navigation
+To perform this we will create a file named `navigating-linux-filesystem.sh` using the `touch` command
+Then using a text editor, we will be using vi, we will paste the following code which is mean to perform the following operations
+-  Display current directory
+-  Create a new directory
+-  Change to the new directory
+-  Create some files
+-  List the files in the current directory
+-  Move one level up
+-  Remove the new directory and its contents
+-  List the files in the current directory again
+
+```bash
+#!/bin/bash
+
+# Display current directory
+echo "Current directory: $PWD"
+
+# Create a new directory
+echo "Creating a new directory..."
+mkdir my_directory
+echo "New directory created."
+
+# Change to the new directory
+echo "Changing to the new directory..."
+cd my_directory
+echo "Current directory: $PWD"
+
+# Create some files
+echo "Creating files..."
+touch file1.txt
+touch file2.txt
+echo "Files created."
+
+# List the files in the current directory
+echo "Files in the current directory:"
+ls
+
+# Move one level up
+echo "Moving one level up..."
+cd ..
+echo "Current directory: $PWD"
+
+# Remove the new directory and its contents
+echo "Removing the new directory..."
+rm -rf my_directory
+echo "Directory removed."
+
+# List the files in the current directory again
+echo "Files in the current directory:"
+ls
+```
+
+- We will use the following command to write and exit the vi editor. `:wq!`
+
+
+- Now that we have our file created, we will grant the file execution permission in order the make the file            executable
+  we will be doing this with the command `chmod +x navigating-linux-filesystem.sh` before we run the file.
+
+
+- Now that we have made the file executable, we are going to run it using any of the following methods.
+
+
+  By putting `bash` in front of the file name or `./` that is, `bash navigating-linux-filesystem.sh` or `./navigating-linux-filesystem.sh`
+
+#####                            Entering Commands
+<img width="527" alt="command opp" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/51210f92-d235-4edc-8301-9f218a06c7ba">
+
+
+#####                             vi Editor
+<img width="339" alt="vi operations" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/b431dbf6-ede9-4dd9-b12f-c944a9dfbeb2">
+
+#####                         Running the Script
+<img width="540" alt="run operations" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/fc9da9c6-4782-478c-bd9d-f06ab6225bde">
 
 
 
