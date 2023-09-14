@@ -23,5 +23,39 @@ echo $name
 ##### - Control Flow:
 The flow of execution of a script can be controlled in bash. Statements like if-else, for loops and while loops can be used to make decision, iterate over lists and strings and execute differrent commands.
 ##### Using bash to execute an if-else statement.
-We will begin this by creating a bash file named `if-else.sh` inside which we will input the following lines of code
-'''bash
+We will begin this by creating a bash file named `if-else.sh` inside which we will input the following lines of code using any prefered text editor. For this we will be using the vi editor. Which is a script meant to check if a number is positive, negative, or zero.
+
+```bash
+#!/bin/bash
+
+# Example script to check if a number is positive, negative, or zero
+
+read -p "Enter a number: " num
+
+if [ $num -gt 0 ]; then
+    echo "The number is positive."
+elif [ $num -lt 0 ]; then
+    echo "The number is negative."
+else
+    echo "The number is zero."
+fi
+```
+We will use the following command to write and exit the vi editor. `:wq!`
+
+<img width="376" alt="touch vi if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/729d6a29-5767-483a-9618-5d695ccaff14">
+
+
+<img width="500" alt="vi if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/133541eb-6d1c-4ead-bda2-c479cafcdc45">
+
+Now that we have our file created, we will grant the file execution permission in order the make the file executable
+we will be doing this with the command `chmod +x if-else.sh` before we run the file.
+
+<img width="404" alt="chmod if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c66fd936-b1a4-43f1-a994-f6983e9486ec">
+
+Now that we have made the file executable, we are going to run it using any of the following methods.
+
+
+By putting `bash` in front of the file name or `./` that is, `bash if-else.sh` or `./if-else.sh` after which we will input a number greater than zero, less than zero and also zero to test the script.
+
+<img width="351" alt="running if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/55cac7a3-6529-40f6-8168-1efe9e5162fe">
+
