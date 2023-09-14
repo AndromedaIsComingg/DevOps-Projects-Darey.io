@@ -275,4 +275,200 @@ ls
 <img width="540" alt="run operations" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/fc9da9c6-4782-478c-bd9d-f06ab6225bde">
 
 
+## File Operations and Sorting
+In this operation we will create a shell script that will perform some file operations and sorting.
+The file name will be `sorting.sh` and it will execute the following operations when we run it.
+- Create three files, file1.txt, file2.txt, file3.txt
+- Display the files in their current order
+- Sort the files alphabetically
+- Display the sorted files
+- Remove the original files
+- Rename the sorted file to a more descriptive name
+- Display the final sorted file
+
+```bash
+#!/bin/bash
+
+# Create three files
+echo "Creating files..."
+echo "This is file3." > file3.txt
+echo "This is file1." > file1.txt
+echo "This is file2." > file2.txt
+echo "Files created."
+
+# Display the files in their current order
+echo "Files in their current order:"
+ls
+
+# Sort the files alphabetically
+echo "Sorting files alphabetically..."
+ls | sort > sorted_files.txt
+echo "Files sorted."
+
+# Display the sorted files
+echo "Sorted files:"
+cat sorted_files.txt
+
+# Remove the original files
+echo "Removing original files..."
+rm file1.txt file2.txt file3.txt
+echo "Original files removed."
+
+# Rename the sorted file to a more descriptive name
+echo "Renaming sorted file..."
+mv sorted_files.txt sorted_files_sorted_alphabetically.txt
+echo "File renamed."
+
+# Display the final sorted file
+echo "Final sorted file:"
+cat sorted_files_sorted_alphabetically.txt
+```
+- We will use the following command to write and exit the vi editor. `:wq!`
+
+
+- Now that we have our file created, we will grant the file execution permission in order the make the file            executable
+  we will be doing this with the command `chmod +x sorting.sh` before we run the file.
+
+
+- Now that we have made the file executable, we are going to run it using any of the following methods.
+
+
+  By putting `bash` in front of the file name or `./` that is, `bash sorting.sh` or `./sorting.sh`
+
+#####                            Entering Commands
+<img width="383" alt="command sort" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ba36d91b-9d37-43cf-a206-38f60f262850">
+
+
+
+#####                             vi Editor
+<img width="428" alt="vi sorting" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8b287bc4-1290-42ca-8518-62288ce86a58">
+
+
+#####                         Running the Script
+<img width="983" alt="run sort" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/532ed0ff-8db5-4640-aa17-22a415566dc8">
+
+
+## Working with numbers and calculations
+In this operation we will create a shell script that will perform some arithemetic operations.
+The file name will be `calculations.sh` and it will execute the following operations when we run it.
+- Define two variables with numeric values, num1 and num2 (num1 will be assigned to a value of 10 and num2 will be     assigned to a value of 5
+- Perform basic arithmetic operations (addition, substraction, multiplication, division and modulus)
+- Display the results
+- Perform some more complex calculations
+- Display the results
+
+```bash
+#!/bin/bash
+
+# Define two variables with numeric values
+num1=10
+num2=5
+
+# Perform basic arithmetic operations
+sum=$((num1 + num2))
+difference=$((num1 - num2))
+product=$((num1 * num2))
+quotient=$((num1 / num2))
+remainder=$((num1 % num2))
+
+# Display the results
+echo "Number 1: $num1"
+echo "Number 2: $num2"
+echo "Sum: $sum"
+echo "Difference: $difference"
+echo "Product: $product"
+echo "Quotient: $quotient"
+echo "Remainder: $remainder"
+
+# Perform some more complex calculations
+power_of_2=$((num1 ** 2))
+square_root=$(awk "BEGIN{ sqrt=$num2; print sqrt }")
+
+# Display the results
+echo "Number 1 raised to the power of 2: $power_of_2"
+echo "Square root of number 2: $square_root"
+```
+
+- We will use the following command to write and exit the vi editor. `:wq!`
+
+
+- Now that we have our file created, we will grant the file execution permission in order the make the file            executable
+  we will be doing this with the command `chmod +x calculations.sh` before we run the file.
+
+
+- Now that we have made the file executable, we are going to run it using any of the following methods.
+
+
+  By putting `bash` in front of the file name or `./` that is, `bash calculations.sh` or `./calculations.sh`
+
+#####                            Entering Commands
+<img width="420" alt="command calculatns" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/90e21e8c-7ec4-49ea-a989-531901d93e09">
+
+
+#####                             vi Editor
+<img width="385" alt="vi calculations" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/fb949e45-c30a-473e-89af-a02c8b0d3157">
+
+
+#####                         Running the Script
+<img width="452" alt="run calculations" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/f19de554-844d-4ca1-ac98-f3cdfe52a802">
+
+
+## File Backup and Timestamping
+Here we will be creating a script the will be focused on file backup and timestamp.
+
+we will be creating a shell script named `backup.sh` that will perform the following operations.
+- Define the source directory and backup directory
+- Create a timestamp with the current date and time
+- Create a backup directory with the timestamp
+- Create the backup directory
+- Copy all files from the source directory to the backup directory
+- Display a message indicating the backup process is complete
+
+```bash
+#!/bin/bash
+
+# Define the source directory and backup directory
+source_dir="/path/to/source_directory"
+backup_dir="/path/to/backup_directory"
+
+# Create a timestamp with the current date and time
+timestamp=$(date +"%Y%m%d%H%M%S")
+
+# Create a backup directory with the timestamp
+backup_dir_with_timestamp="$backup_dir/backup_$timestamp"
+
+# Create the backup directory
+mkdir -p "$backup_dir_with_timestamp"
+
+# Copy all files from the source directory to the backup directory
+cp -r "$source_dir"/* "$backup_dir_with_timestamp"
+
+# Display a message indicating the backup process is complete
+echo "Backup completed. Files copied to: $backup_dir_with_timestamp"
+```
+
+- We will use the following command to write and exit the vi editor. `:wq!`
+
+
+- Now that we have our file created, we will grant the file execution permission in order the make the file            executable
+  we will be doing this with the command `chmod +x backup.sh` before we run the file.
+
+
+- Now that we have made the file executable, we are going to run it using any of the following methods.
+
+
+  By putting `bash` in front of the file name or `./` that is, `bash backup.sh` or `./backup.sh`
+
+#####                            Entering Commands
+<img width="397" alt="command timestamp" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/d647c806-d0b9-4e1a-a1df-c47b6413f9f4">
+
+
+#####                             vi Editor
+<img width="497" alt="vi timestamp" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/a0794816-de0c-4309-8653-001fd5e74ce0">
+
+
+
+#####                         Running the Script
+<img width="989" alt="run timestamp" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ce33bc3a-cb8a-4fc0-8ecd-9414f859c3dc">
+
 
