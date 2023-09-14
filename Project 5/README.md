@@ -1,6 +1,6 @@
 # INRODUCTION TO SHELL SCRIPTING AND USER INPUT
 
-Being familiar with the use of terminal from our experiences and previous projects, we could see that we carried out some tasks with certain commands which executed corresponding outputs.
+Being familiar with the use of terminal from our experiences and previous projects, we can see that we carried out some tasks with certain commands which executed corresponding outputs.
 
 Basically, the idea of shell scripting is to automate and execute repeatative tasks, for example, in a situation where we have to download a thousand different times from the web, this task can be executed using a script that will perform this repeatitive tasks.
 Bash is a dialeect of shell syntax called the Bourne shell. Bash scripts are usually a series of commands saved in a text file with a .sh extension
@@ -22,6 +22,7 @@ echo $name
 
 ##### - Control Flow:
 The flow of execution of a script can be controlled in bash. Statements like if-else, for loops and while loops can be used to make decision, iterate over lists and strings and execute differrent commands.
+
 ##### Using bash to execute an if-else statement.
 We will begin this by creating a bash file named `if-else.sh` inside which we will input the following lines of code using any prefered text editor. For this we will be using the vi editor. Which is a script meant to check if a number is positive, negative, or zero.
 
@@ -58,4 +59,36 @@ Now that we have made the file executable, we are going to run it using any of t
 By putting `bash` in front of the file name or `./` that is, `bash if-else.sh` or `./if-else.sh` after which we will input a number greater than zero, less than zero and also zero to test the script.
 
 <img width="351" alt="running if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/55cac7a3-6529-40f6-8168-1efe9e5162fe">
+
+##### Iterating through a list using a for loop
+We will begin this by creating a bash file named `for-loop.sh` inside which we will input the following lines of code using any prefered text editor. For this we will be using the vi editor. Which is a script meant to display number 1 to 5 using a for loop.
+
+```bash
+#!/bin/bash
+
+# Example script to print numbers from 1 to 5 using a for loop
+
+for (( i=1; i<=5; i++ ))
+do
+    echo $i
+done
+```
+
+<img width="375" alt="touch for-loop" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/7a7e0ef0-4fd6-4c55-8d94-4efe758a10c0">
+
+We will use the following command to write and exit the vi editor. `:wq!`
+
+<img width="472" alt="vi for-loop" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/37cbdadc-310c-40d6-8177-73e1779cf251">
+
+
+Now using the same method as above to make the file executable, we will grant the file an execution privilage and then run the script file using same method as above.
+
+<img width="400" alt="run+chmod for-loop" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/3f1339bd-bad8-4599-8f16-3d7bec0994eb">
+
+
+
+
+
+
+
 
