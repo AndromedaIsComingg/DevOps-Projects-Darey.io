@@ -2,14 +2,16 @@
 
 ## Inroduction to Shell Scripting and User Input
 
-Being familiar with the use of terminal from our experiences and previous projects, we can see that we carried out some tasks with certain commands which executed corresponding outputs.
+Being familiar with the use of terminal from our previous experiences and projects, we can see that we carried out some tasks with certain commands which executed corresponding outputs.
 
-Basically, the idea of shell scripting is to automate and execute repeatative tasks, for example, in a situation where we have to download a thousand different times from the web, this task can be executed using a script that will perform this repeatitive tasks.
+Basically, the idea of shell scripting is to automate and execute repeatitive tasks, for example, in a situation where we have to download a thousand different times from the web, this task can be executed using a script that will perform this repeatitive tasks.
 Bash is a dialeect of shell syntax called the Bourne shell. Bash scripts are usually a series of commands saved in a text file with a .sh extension
 
 ## Shell Scripting Syntx Elements
 ##### - Variables:
-Bash allows us to be able to declare variables. This variables can be assinged to values which can be strings, numbers, or arrays. We can always call these variables by putting a dollar sign ($) in front of the name of the variable whenever there is a need to use it. 
+Bash allows us to be able to declare variables. This variables can be assinged to values which can be strings, numbers, or arrays. We can always call these variables by putting a dollar sign ($) in front of the name of the variable whenever there is a need to use them. 
+
+
 ###### Assingning Value to a Variable and Retrieving Value from a Variable
 Assingning variable to a value is done with an equality sign (=)
 
@@ -23,10 +25,10 @@ echo $name
 
 
 ##### - Control Flow:
-The flow of execution of a script can be controlled in bash. Statements like if-else, for loops and while loops can be used to make decision, iterate over lists and strings and execute differrent commands.
+The flow of execution of a script can be controlled in bash. Statements like if-else, for loops, and while loops can be used to make decision, iterate over lists and strings and execute differrent commands.
 
 ##### Using bash to execute an if-else statement.
-We will begin this by creating a bash file named `if-else.sh` inside which we will input the following lines of code using any prefered text editor. For this we will be using the vi editor. Which is a script meant to check if a number is positive, negative, or zero.
+We will begin this by creating a bash file named `if-else.sh` inside which we will input the following lines of code using any prefered text editor. For this we will be using the vi editor. This script is a script meant to check if a number is positive, negative, or zero.
 
 ```bash
 #!/bin/bash
@@ -51,7 +53,7 @@ We will use the following command to write and exit the vi editor. `:wq!`
 <img width="500" alt="vi if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/133541eb-6d1c-4ead-bda2-c479cafcdc45">
 
 
-Now that we have our file created, we will grant the file execution permission in order the make the file executable
+Now that we have our file created, we will grant the file an execution permission in order the make the file executable
 we will be doing this with the command `chmod +x if-else.sh` before we run the file.
 
 <img width="404" alt="chmod if-else" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c66fd936-b1a4-43f1-a994-f6983e9486ec">
@@ -66,7 +68,7 @@ By putting `bash` in front of the file name or `./` that is, `bash if-else.sh` o
 
 
 ##### Iterating through a list using a for loop
-We will begin this by creating a bash file named `for-loop.sh` inside which we will input the following lines of code using any prefered text editor. For this we will be using the vi editor. Which is a script meant to display number 1 to 5 using a for loop.
+We will begin this by creating a bash file named `for-loop.sh` inside which we will input the following lines of code using any prefered text editor. For this we will be using the vi editor. This is a script meant to display numbers 1 to 5 using a for loop.
 
 ```bash
 #!/bin/bash
@@ -115,7 +117,7 @@ Accept user input:
 `read name`
 
 Output Text to Terminal:
-`echo "Hello World"` (this is also be executed in the same bash file named `name.sh`)
+`echo "Hello World"` (this is also to be executed in the same bash file named `name.sh`)
 
 
 <img width="195" alt="echo name" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/d63cbb18-001d-48ac-87b0-0fea4cfd7a0a">
@@ -164,7 +166,7 @@ We will use the following command to write and exit the vi editor then run the s
 
 
 ## Writing a Shell Script
-- From terminal we are going to create a folder for this called "shell-scripting" where we will keep the scripts for the following operations. usinf the command `mkdir shell-scripting`
+- From terminal we are going to create a folder for this, called "shell-scripting" where we will keep the scripts for the following operations. using the command `mkdir shell-scripting`
 - Then we will create a file called user-input with the command `touch user-input.sh`
 - In this file, using the vi editor we will paste the following code which is meant to take the name of a user and     display a greeting.
 
@@ -352,7 +354,7 @@ cat sorted_files_sorted_alphabetically.txt
 
 ## Working with numbers and calculations
 In this operation we will create a shell script that will perform some arithemetic operations.
-The file name will be `calculations.sh` and it will execute the following operations when we run it.
+The bash file name will be `calculations.sh` and it will execute the following operations when we run it.
 - Define two variables with numeric values, num1 and num2 (num1 will be assigned to a value of 10 and num2 will be     assigned to a value of 5
 - Perform basic arithmetic operations (addition, substraction, multiplication, division and modulus)
 - Display the results
