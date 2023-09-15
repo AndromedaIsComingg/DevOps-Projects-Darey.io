@@ -1,4 +1,4 @@
-# SHELL SCRIPTING HANDS-ON PROJECT
+# SHELL SCRIPTING HANDS-ON PROJECTS
 
 ## Inroduction to Shell Scripting and User Input
 
