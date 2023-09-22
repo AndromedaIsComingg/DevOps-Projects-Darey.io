@@ -47,7 +47,7 @@ Server B name - `mysql client`
 <img width="1280" alt="instances" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/0b2c74ab-6857-44c3-b11d-37946a52e0db">
 
 
-### 2. On the `mysql server` we will install the MySQL Server software
+### 2. On `mysql server` we will install the MySQL Server software
 We will begin this by connecting terminal to the `mysql server` instance by
 updating apt using the command `sudo apt update`
 
@@ -66,7 +66,7 @@ afterwhich we will enable the proccess using the command `sudo systemctl enable 
 <img width="733" alt="Enable MySQL Server" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/275fd0d6-5bca-43ef-9af7-d67a51a717d6">
 
 
-### 3. On the `mysql server` we will install the MySQL Client software
+### 3. On `mysql client` we will install the MySQL Client software
 We will begin this by connecting terminal to the `mysql client` instance by
 updating apt using the command `sudo apt update`
 
@@ -88,18 +88,18 @@ To get the ip address of `mysql client`, we will run the following command on te
 
 <img width="989" alt="ip addr show" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8fd529cd-da60-401a-85e8-c20024c45e92">
 
-Then we add the rule using the `mysql client`s ip `172.31.24.70`
+Then we add the rule using the `mysql client`s ip `172.31.24.70` in the security groug section of `mysql server`'s  instance.
 
 <img width="1275" alt="add rule" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/e14c1329-20b3-46d0-8f2a-7ba03b8a5485">
 
 
 ##### Now that we have the mysql services running, we will need to create a database, a user, and tables on  `my sql server`
-To begin this we will run the following security script `sudo mysql_secure_installation` and follow the prompt
+To begin this we will run the following security script `sudo mysql_secure_installation` and follow the prompts accordingly.
 
 <img width="795" alt="security script" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/1a37fadd-99af-4243-a779-26ea283b0202">
 
 
-We will run the MySQL service and create a user with the name `remote_user`, a database `test_db` and then grant privilages with the following commands.
+We will run the MySQL service and create a user with the name `remote_user`, a database `test_db`, a password `PassWord.1` and then grant privilages with the following commands.
 `CREATE USER ‘remote_user’@‘%’ IDENTIFIED WITH mysql_native_password BY ‘PassWord.1’;`
 `CREATE DATABASE test_db;`
 `GRANT ALL ON test_db.* TO ‘remote_user’@‘%’ WITH GRANT OPTION;`
@@ -108,7 +108,7 @@ We will run the MySQL service and create a user with the name `remote_user`, a d
 <img width="664" alt="user db previ flush" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c85d84bb-f240-44c6-90e2-2a7cd0799ad9">
 
 
-### 5. Configure MySQL Server to allow connections from remote hosts.
+### 5. Configuring MySQL Server to allow connections from remote hosts.
 Using the command `sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf` We will use the vi editor to edit 127.0.0.1 to 0.0.0.0 in the 'bind-address'
 
 <img width="492" alt="command vi" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/900f9253-11c8-4356-ba1f-e9874274c400">
@@ -119,7 +119,7 @@ now we will update the script in the insert mode of vi editor then write and exi
 <img width="707" alt="bind add vi" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/7b7190ab-aa07-473d-842e-7bb053e4ab4e">
 
 
-Now we will restart sysql for changes to take effect using the command `sudo systemctl restart mysql`
+We can now restart MySQL for changes to take effect using the command `sudo systemctl restart mysql`
 
 
 <img width="490" alt="mysql restart" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8a58edd5-1685-4577-8d57-3fb7b8e32f83">
