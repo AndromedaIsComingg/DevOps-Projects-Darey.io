@@ -100,9 +100,13 @@ To begin this we will run the following security script `sudo mysql_secure_insta
 
 
 We will run the MySQL service and create a user with the name `remote_user`, a database `test_db`, a password `PassWord.1` and then grant privilages with the following commands.
+
 `CREATE USER ‘remote_user’@‘%’ IDENTIFIED WITH mysql_native_password BY ‘PassWord.1’;`
+
 `CREATE DATABASE test_db;`
+
 `GRANT ALL ON test_db.* TO ‘remote_user’@‘%’ WITH GRANT OPTION;`
+
 `FLUSH PRIVILAGES;`
 
 <img width="664" alt="user db previ flush" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c85d84bb-f240-44c6-90e2-2a7cd0799ad9">
@@ -136,7 +140,7 @@ To check that you have successfully connected to a remote MySQL Server, we will 
 <img width="303" alt="show databases" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/de321016-d045-4608-94b5-2e6f63e39ead">
 
 
- Hurray!!! The displayed output indicates the our we have successfully implemented a Client-Server Architechture using MySQL Database Management System and we have also connected the client and the remote server.
+ Hurray!!! The displayed output indicates the our we have successfully implemented a Client-Server Architechture using MySQL Database Management System and we have also connected the client and the remote servers.
  
 ---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
 
