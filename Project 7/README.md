@@ -100,3 +100,22 @@ This connects terminal to the EC2 instance using SSH, which is a Secure Shell ne
 <img width="669" alt="Status Apache" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/e4c96429-9e0f-4da5-970a-1795b3ab3b74">
 
 
+##### Configure Apache to serve a page showing its public ip
+we will start this by configuring Apache webserver to serve content on port 8000 instead of the default port 80, then we will create an index.html file which will be configured to display thre publice ip of the EC2 instance, then we will override the Apach webserver's default html file.
+
+
+##### Configuring Apache to serve content on port 8000
+Using a prefered text editor such as nano, vi, vim etc, we will be editing a configuration file in the following path
+`sudo vi /etc/apache2/ports.conf`
+
+
+<img width="440" alt="conf port 8000" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/74f5e986-6bb4-4d3f-bac8-77a48f230258">
+
+
+Using the vi editor, we now going to switch to insert mode by pressing key `i` and then adding a listen directive of 8000, afterwhich we will save and exit the vi editor with the comand `wq!` as shown below.
+
+
+<img width="574" alt="vi listen 8000" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/35f3104d-4dff-48fb-8b1d-fd669a497427">
+
+
+
