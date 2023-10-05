@@ -33,6 +33,7 @@ Nginx is a versertile software, it can act like a web server, reverse proxy, and
 
 Instance A name - `Apache Server`
 
+
 Instance B name - `Nginx Loadbalancer`
 
 <img width="1280" alt="EC2 Spinning" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/80e76f5b-56b7-4f7b-8875-969e4250752c">
@@ -41,3 +42,12 @@ Instance B name - `Nginx Loadbalancer`
 ###### 2. Creating Inbound Rules
 For Instance A, the Sever, we will be opening port 8000 and port 80 will be openned for Instance B, the Load balancer. This will be done by creating a new entry in the "inbound rules" in the Instances' security group.
 Instance a will also be configured to allow traffic from anywhere.
+
+##### Below we add the inbound rule 8000 to Instance A
+<img width="1278" alt="Inbound Apache server" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/7e16292b-7b2b-449b-9f1f-7f2a59af28c4">
+
+
+##### Below we add the inbound rule 80 to Instance B
+<img width="1262" alt="Inbound Nginx Loadbalancer" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/d234b132-0216-40b2-a934-dbb3693cd887">
+
+
