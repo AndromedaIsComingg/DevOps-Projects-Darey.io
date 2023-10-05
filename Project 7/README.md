@@ -72,10 +72,10 @@ Please note that that file extension must be added to the name of the key file.
 
 
 ###### 2. Creating Inbound Rules
-For Instance A, the Sever, we will be opening port 8000 and port 80 will be openned for Instance B, the Load balancer. This will be done by creating a new entry in the "inbound rules" in the Instances' security group.
+For Instance A and C, the Sever, we will be opening port 8000 and port 80 will be openned for Instance B, the Load balancer. This will be done by creating a new entry in the "inbound rules" in the Instances' security group.
 Instance a will also be configured to allow traffic from anywhere.
 
-##### Below we add the inbound rule 8000 to Instance A
+##### As below, we will add the inbound rule 8000 to Instance A (same will be carried out for instance C)
 <img width="1278" alt="Inbound Apache server" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/7e16292b-7b2b-449b-9f1f-7f2a59af28c4">
 
 
@@ -145,8 +145,8 @@ Using the vi editor, we now going to switch to insert mode by pressing key `i` a
 <img width="409" alt="Apache restart" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/423b53c3-0881-4c14-b904-808275853507">
 
 
-## Creating our new html file
-Open a new index.html file with the following command
+## Creating a new html file
+Create a new index.html file with the following command
 
 `sudo vi index.html`
 
