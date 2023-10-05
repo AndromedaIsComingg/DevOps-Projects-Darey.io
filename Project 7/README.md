@@ -132,3 +132,43 @@ Using the vi editor, we now going to switch to insert mode by pressing key `i` a
 <img width="605" alt="vi conf dedualf edit" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/e67f8a15-2c1f-4ac6-b468-a5974ced2807">
 
 
+##### Now we will have to restart Apache to load the new configuration using the following command
+`sudo systemctl restart apache2`
+
+
+<img width="409" alt="Apache restart" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/423b53c3-0881-4c14-b904-808275853507">
+
+
+## Creating our new html file
+Open a new index.html file with the following command
+`sudo vi index.html`
+<img width="324" alt="sudo indx html" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/f00bda96-bae1-4bf8-9578-7748f79491bf">
+
+
+Now using the vi editor we are going to paste the following code inside the created html file as text and substitute the public ip in the place holder in the code and exit using `wq!`
+
+``` html
+<!DOCTYPE html>
+        <html>
+        <head>
+            <title>My EC2 Instance</title>
+        </head>
+        <body>
+            <h1>16.16.27.184</h1>
+            <p>Public IP: YOUR_PUBLIC_IP</p>
+        </body>
+        </html>
+```
+
+<img width="330" alt="vi index html" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ac9638b6-6d5d-437a-bc4c-4846927856e6">
+
+
+##### Changing Ownership
+Now we will change the ownership of the created file using the following command
+`sudo chown www-data:www-data ./index.html`
+
+
+<img width="496" alt="Change ownershp" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5f02863e-b065-43f3-aa8e-f5b83bf29664">
+
+
+
