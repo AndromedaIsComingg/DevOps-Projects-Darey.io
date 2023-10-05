@@ -31,9 +31,13 @@ Nginx is a versertile software, it can act like a web server, reverse proxy, and
 
 ###### 1. Create and Configure two linux based server using the AWS EC2 console
 
-Server A name - `Apache Server`
-Server B name - `Nginx Loadbalancer`
+Instance A name - `Apache Server`
+
+Instance B name - `Nginx Loadbalancer`
 
 <img width="1280" alt="EC2 Spinning" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/80e76f5b-56b7-4f7b-8875-969e4250752c">
 
 
+###### 2. Creating Inbound Rules
+For Instance A, the Sever, we will be opening port 8000 and port 80 will be openned for Instance B, the Load balancer. This will be done by creating a new entry in the "inbound rules" in the Instances' security group.
+Instance a will also be configured to allow traffic from anywhere.
