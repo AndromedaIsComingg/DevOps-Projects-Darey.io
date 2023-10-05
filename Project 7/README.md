@@ -33,14 +33,20 @@ From the AWS web platform `AWS.Amazom.com` we will sign up and create an account
 
 ## Setting up a Basic Load Balancer
 
-###### 1. Create and Configure two linux based server using the AWS EC2 console
+###### 1. Create and Configure three linux based servers using the AWS EC2 console
+Two of which will be Apache Web servers and the third will be used to configure Nginx as a load balancer.
 
 Instance A name - `Apache Server`
 
 
 Instance B name - `Nginx Loadbalancer`
 
-<img width="1280" alt="EC2 Spinning" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/80e76f5b-56b7-4f7b-8875-969e4250752c">
+
+Instace C name - `Apache Server 2`
+
+
+<img width="1280" alt="two instances" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/408c0749-2f1e-4de8-9ac4-1a7d0e6d35e8">
+
 
 
 ## Creating a private Key
@@ -126,7 +132,7 @@ Still using the vi editor, we are now going to edit another configuration file i
 <img width="582" alt="conf 2  default" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/a9f1075c-5aaf-42f7-a854-c2d745d7d029">
 
 
-Using the vi editor, we now going to switch to insert mode by pressing key `i` and then edit port 80 to 8000, afterwhich we will save and exit the vi editor with the comand `wq!` as shown below.
+Using the vi editor, we now going to switch to insert mode by pressing key `i` and then edit port 80 to 8000 to match with the added/edited port, afterwhich we will save and exit the vi editor with the comand `wq!` as shown below.
 
 
 <img width="605" alt="vi conf dedualf edit" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/e67f8a15-2c1f-4ac6-b468-a5974ced2807">
@@ -157,11 +163,11 @@ Now using the vi editor we are going to paste the following code inside the crea
             <title>My EC2 Instance</title>
         </head>
         <body>
-            <h1>16.16.27.184</h1>
-            <p>Public IP: YOUR_PUBLIC_IP</p>
+            <h1>Welcome to my EC2 instance</h1>
+            <p>Public IP: 16.16.27.184</p>
         </body>
         </html>
-```
+``` 
 
 <img width="330" alt="vi index html" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ac9638b6-6d5d-437a-bc4c-4846927856e6">
 
@@ -201,5 +207,87 @@ We will use the publice ip in our web browser with the port number, if it displa
 <img width="1280" alt="web apache welcome" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ee6080f7-15b9-4195-8d2b-a1de2f54e8f2">
 
 
-## Configuring Nginx as a Loadbalancer
+##### We will therefore repeat this process for the second Apache Instance, `Apache Server 2` so that we can have both instances running as an Apache server. 
 
+
+## Configuring Nginx as a Loadbalancer
+Now we are going to working with the second instance, `Instance B`
+
+
+Followiing the same procedure as in `Intance A`, We are going to run this instance on terminal aferwhich we will install Nginx with the following command
+`sudo apt update -y && sudo apt install nginx -y`
+
+##### it is important to note that :
+- the `sudo apt update` side of the command is to update the server
+- the && (Ampersand and) is a module to combine two commands
+- the `-y` in the command is to answer yes to future yes/no prompts when the command is running.
+
+
+<img width="1280" alt="Instance B spin" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5cce1389-257d-4206-a1d5-8a18d2ad0bdd">
+
+
+##### Verifying Nginx
+Now we will verify that Nginx is installed with the following command `sudo systemctl status nginx`
+
+<img width="1035" alt="Status Nginx" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ded9ff4d-c7d3-4aaa-92ff-a7dd0d2a6d7e">
+
+
+Now we will open Nginx configuration file with the following command `sudo vi /etc/nginx/conf.d/loadbalancer.conf`
+
+Using the vi editor, we will paste the following lines of code to make Nginx act like a Load balancer, and exit vi editor with the command `wq!`
+
+
+Note : the public ip of the load balancer will be replaced in the place holder. and also the public IP and pot of the web servers.
+
+``` html
+        
+        upstream backend_servers {
+
+            # your are to replace the public IP and Port to that of your webservers
+            server 127.0.0.1:8000; # public IP and port for webserser 1
+            server 127.0.0.1:8000; # public IP and port for webserver 2
+
+        }
+
+        server {
+            listen 80;
+            server_name <your load balancer's public IP addres>; # provide your load balancers public IP address
+
+            location / {
+                proxy_pass http://backend_servers;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+        }
+    
+```
+
+
+
+<img width="902" alt="vi Web servers" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/93fda2c8-1022-4d31-bb3c-da53e798903b">
+
+
+
+upstream backend_server defines a group of backend servers. The server lines inside the upstream block lists the addresses and ports of the backend servers. Proxy pass inside the location block sets up the load balancing, passing the requests to the backend servers. The proxy_check_header lines pass the necessary headers to the backend servers to correctly handle the requests.
+
+
+Now we will test the configuration with the command below
+
+`sudo nginx -t`
+
+
+<img width="568" alt="Nginx conf test" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/cf9e6e87-d7ca-470d-8f11-f802fa3a26c6">
+
+
+SInce there are no errors, we shall restart Nginx using the following command `sudo systemctl restart nginx`
+
+<img width="475" alt="Nginx restart" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8d716a69-169a-4cf2-a3d0-1128f916ab7c">
+
+
+
+Now if we paste the public IP of our Load balancer in a web browser, we should be able to see the same web pages served by the web servers sa shown below.
+
+<img width="1280" alt="confirmatn" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5f3257aa-dc45-45d4-b5b7-d938d21c94e8">
+
+Now that the Nginx instance IP is displaying the same pages as the Apache Servers, Nginx is therefore serving the purpose of of load balancing between the two Apache servers.
