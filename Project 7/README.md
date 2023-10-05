@@ -141,7 +141,10 @@ Using the vi editor, we now going to switch to insert mode by pressing key `i` a
 
 ## Creating our new html file
 Open a new index.html file with the following command
+
 `sudo vi index.html`
+
+
 <img width="324" alt="sudo indx html" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/f00bda96-bae1-4bf8-9578-7748f79491bf">
 
 
@@ -164,11 +167,39 @@ Now using the vi editor we are going to paste the following code inside the crea
 
 
 ##### Changing Ownership
-Now we will change the ownership of the created file using the following command
+Now we will change the ownership of the created file using the following command.
+
+
 `sudo chown www-data:www-data ./index.html`
 
 
 <img width="496" alt="Change ownershp" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5f02863e-b065-43f3-aa8e-f5b83bf29664">
 
 
+##### Overriding the defaulf html file in the Apache Webserver
+This is done by replacing the defualt html file in the default directory with the newly created file using the following command.
+
+
+`sudo cp -f ./index.html /var/www/html/index.html`
+
+
+<img width="543" alt="replace file" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ed7bdd22-e189-4eac-8146-309fea208749">
+
+
+Now we will restart the Apache Wbeserver to reloaad the new configuration using the following command
+
+
+`sudo systemctl restart apache2`
+
+
+<img width="420" alt="Apache restart 2" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/0431cbcd-dc0a-499c-8999-4e6550b94d43">
+
+
+##### Confirming the configuration from our web browser
+We will use the publice ip in our web browser with the port number, if it displays the public ip, the it means we are good to go.
+
+<img width="1280" alt="web apache welcome" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ee6080f7-15b9-4195-8d2b-a1de2f54e8f2">
+
+
+## Configuring Nginx as a Loadbalancer
 
