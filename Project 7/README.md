@@ -118,4 +118,17 @@ Using the vi editor, we now going to switch to insert mode by pressing key `i` a
 <img width="574" alt="vi listen 8000" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/35f3104d-4dff-48fb-8b1d-fd669a497427">
 
 
+Still using the vi editor, we are now going to edit another configuration file in the path below. We are going to change port 80 to 8000.
+
+`sudo vi /etc/apache2/sites-available/000-default.conf`
+
+
+<img width="582" alt="conf 2  default" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/a9f1075c-5aaf-42f7-a854-c2d745d7d029">
+
+
+Using the vi editor, we now going to switch to insert mode by pressing key `i` and then edit port 80 to 8000, afterwhich we will save and exit the vi editor with the comand `wq!` as shown below.
+
+
+<img width="605" alt="vi conf dedualf edit" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/e67f8a15-2c1f-4ac6-b468-a5974ced2807">
+
 
