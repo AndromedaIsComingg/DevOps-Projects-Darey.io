@@ -20,9 +20,20 @@ Nginx is a versertile software, it can act like a web server, reverse proxy, and
 #### The prerequisites for the implementation of Loadbalancers with Nginx on Linux are as follows:
 
 - Stable network connection
+- How to create an EC2 Instance
 - Basic Unix command knowledge
 - A system running Linux or an AWS EC2 instance running a Linux OS
 - Access to the terminal
 - A user account with sudo privileges
+
+
+## Setting up a Basic Load Balancer
+
+###### 1. Create and Configure two linux based server using the AWS EC2 console
+
+Server A name - `Apache Server`
+Server B name - `Nginx Loadbalancer`
+
+<img width="1280" alt="EC2 Spinning" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/80e76f5b-56b7-4f7b-8875-969e4250752c">
 
 
