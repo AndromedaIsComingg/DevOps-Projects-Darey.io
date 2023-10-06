@@ -1,2 +1,2 @@
-# Other-Projects
+# DevOps Projects
 Projects > than 4
