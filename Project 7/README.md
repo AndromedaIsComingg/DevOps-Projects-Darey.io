@@ -9,7 +9,7 @@ Load balancing is the method of distributing network traffic equally across a po
 
 
 
-Nginx is a versertile software, it can act like a web server, reverse proxy, and a load balancer. All that is needed is to configure it properly for which purpose.
+Nginx is a versertile software, it can act like a web server, reverse proxy, and a load balancer. All that is needed is to configure it properly for which purpose it is to be used for.
 
 ##### The concept of using Nginx as a load balancer is shown by the illustration below
 
@@ -72,7 +72,7 @@ Please note that that file extension must be added to the name of the key file.
 
 
 ###### 2. Creating Inbound Rules
-For Instance A and C, the Sever, we will be opening port 8000 and port 80 will be openned for Instance B, the Load balancer. This will be done by creating a new entry in the "inbound rules" in the Instances' security group.
+For Instance A and C, the Servers, we will be opening port 8000 and port 80 will be openned for Instance B, the Load balancer. This will be done by creating a new entry in the "inbound rules" in the Instances' security group.
 Instance a will also be configured to allow traffic from anywhere.
 
 ##### As below, we will add the inbound rule 8000 to Instance A (same will be carried out for instance C)
@@ -192,7 +192,7 @@ This is done by replacing the defualt html file in the default directory with th
 <img width="543" alt="replace file" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ed7bdd22-e189-4eac-8146-309fea208749">
 
 
-Now we will restart the Apache Wbeserver to reloaad the new configuration using the following command
+Now we will restart the Apache Webserver to reloaad the new configuration using the following command
 
 
 `sudo systemctl restart apache2`
@@ -202,7 +202,7 @@ Now we will restart the Apache Wbeserver to reloaad the new configuration using 
 
 
 ##### Confirming the configuration from our web browser
-We will use the publice ip in our web browser with the port number, if it displays the public ip, the it means we are good to go.
+We will use the publice IP in our web browser with the port number, if it displays the public IP, the it means we are good to go.
 
 <img width="1280" alt="web apache welcome" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ee6080f7-15b9-4195-8d2b-a1de2f54e8f2">
 
@@ -237,7 +237,7 @@ Now we will open Nginx configuration file with the following command `sudo vi /e
 Using the vi editor, we will paste the following lines of code to make Nginx act like a Load balancer, and exit vi editor with the command `wq!`
 
 
-Note : the public ip of the load balancer will be replaced in the place holder. and also the public IP and pot of the web servers.
+Note : the public IP of the load balancer will be replaced in the place holder. and also the public IP and pot of the web servers.
 
 ``` html
         
@@ -269,7 +269,7 @@ Note : the public ip of the load balancer will be replaced in the place holder. 
 
 
 
-upstream backend_server defines a group of backend servers. The server lines inside the upstream block lists the addresses and ports of the backend servers. Proxy pass inside the location block sets up the load balancing, passing the requests to the backend servers. The proxy_check_header lines pass the necessary headers to the backend servers to correctly handle the requests.
+**upstream backend_server** defines a group of backend servers. The **server** lines inside the **upstream** block lists the addresses and ports of the backend servers. **proxy_pass** inside the **location** block sets up the load balancing, passing the requests to the backend servers. The **proxy_set_header** lines pass the necessary headers to the backend servers to correctly handle the requests.
 
 
 Now we will test the configuration with the command below
@@ -286,11 +286,11 @@ SInce there are no errors, we shall restart Nginx using the following command `s
 
 
 
-Now if we paste the public IP of our Load balancer in a web browser, we should be able to see the same web pages served by the web servers sa shown below.
+Now if we paste the public IP of our Load balancer in a web browser, we should be able to see the same web pages served by the web servers as shown below.
 
 <img width="1280" alt="confirmatn" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5f3257aa-dc45-45d4-b5b7-d938d21c94e8">
 
-Now that the Nginx instance IP is displaying the same pages as the Apache Servers, Nginx is therefore serving the purpose of of load balancing between the two Apache servers.
+Now that the public IP of the Nginx instance is displaying the same pages served by the Apache Servers on a web browser, Nginx is therefore serving the purpose of of load balancing between the two Apache servers.
 
 
 
