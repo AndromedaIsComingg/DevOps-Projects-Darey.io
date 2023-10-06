@@ -290,7 +290,7 @@ Now if we paste the public IP of our Load balancer in a web browser, we should b
 
 <img width="1280" alt="confirmatn" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5f3257aa-dc45-45d4-b5b7-d938d21c94e8">
 
-Now that the public IP of the Nginx instance is displaying the same pages served by the Apache Servers on a web browser, Nginx is therefore serving the purpose of of load balancing between the two Apache servers.
+**Now that the public IP of the Nginx instance is displaying the same pages served by the Apache Servers on a web browser, Nginx is therefore serving the purpose of of load balancing between the two Apache servers.**
 
 
 
