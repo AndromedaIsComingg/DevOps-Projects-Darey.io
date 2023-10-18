@@ -83,6 +83,22 @@ Instance a will also be configured to allow traffic from anywhere.
 <img width="1262" alt="Inbound Nginx Loadbalancer" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/d234b132-0216-40b2-a934-dbb3693cd887">
 
 
+## Connecting to the EC2 Instances
+###### Connect to the EC2 instance by running the command `ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>`
+This connects terminal to the EC2 instance using SSH, which is a Secure Shell network communication protocol that enables two computers to communicate.
+
+<img width="567" alt="terminal apache server" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/3fac61ed-291d-49f8-b9ee-40ab2aed4472">
+
+
+## Updating Index Files
+##### It is best practice to update index files on the instance
+This is done using the command `sudo apt update`, this downloads the most recent packages from sources.
+
+<img width="815" alt="Apt update" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/958d18be-3629-490c-b014-53e2bf6c13e4">
+
+
+
+
 ## Deploying and Configuring the Webservers (Using shell scripting)
 ###### All the process we need to deploy our web server has been codified in the shell script below:
 - This Automates the installation and configuration of Apache Webserver to listen on port 8000
@@ -90,6 +106,49 @@ Instance a will also be configured to allow traffic from anywhere.
   `./install_configure_apache.sh <public IP>`
 
 
+```bash
+  #!/bin/bash
 
+####################################################################################################################
+##### This automates the installation and configuring of apache webserver to listen on port 8000
+##### Usage: Call the script and pass in the Public_IP of your EC2 instance as the first argument as shown below:
+######## ./install_configure_apache.sh 127.0.0.1
+####################################################################################################################
+
+set -x # debug mode
+set -e # exit the script if there is an error
+set -o pipefail # exit the script when there is a pipe failure
+
+PUBLIC_IP=$1
+
+[ -z "${PUBLIC_IP}" ] && echo "Please pass the public IP of your EC2 instance as an argument to the script" && exit 1
+
+sudo apt update -y &&  sudo apt install apache2 -y
+
+sudo systemctl status apache2
+
+if [[ $? -eq 0 ]]; then
+    sudo chmod 777 /etc/apache2/ports.conf
+    echo "Listen 8000" >> /etc/apache2/ports.conf
+    sudo chmod 777 -R /etc/apache2/
+
+    sudo sed -i 's/<VirtualHost \*:80>/<VirtualHost *:8000>/' /etc/apache2/sites-available/000-default.conf
+
+fi
+sudo chmod 777 -R /var/www/
+echo "<!DOCTYPE html>
+        <html>
+        <head>
+            <title>My EC2 Instance</title>
+        </head>
+        <body>
+            <h1>Welcome to my EC2 instance</h1>
+            <p>Public IP: "${PUBLIC_IP}"</p>
+        </body>
+        </html>" > /var/www/html/index.html
+
+sudo systemctl restart apache2
+
+```
 
 ## Implementing Loadbalancers with Nginx
