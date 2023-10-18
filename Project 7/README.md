@@ -211,10 +211,10 @@ We will use the publice IP in our web browser with the port number, if it displa
 
 
 ## Configuring Nginx as a Loadbalancer
-Now we are going to working with the second instance, `Instance B`
+Now we are going to be working with the second instance, `Instance B`
 
 
-Followiing the same procedure as in `Intance A`, We are going to run this instance on terminal aferwhich we will install Nginx with the following command
+Following the same procedure as in `Instance A`, We are going to run this instance on terminal aferwhich we will install Nginx with the following command
 `sudo apt update -y && sudo apt install nginx -y`
 
 ##### it is important to note that :
