@@ -152,7 +152,7 @@ sudo systemctl restart apache2
 ```
 
 ## Creating a Shell script file to Install Apache
-##### Now we will create a shell script file named `install` with as bash extension `.sh`, hence the file name will be `install.sh` 
+##### Now we will create a shell script file named `install` with as bash extension `.sh`, hence the file name will be `install.sh` with the command `sudo vi install.sh`
 This will be done with the vi text editor, on the vi text editor we will enter the insert mode with `i`, then we will paste the above script in it, press the `esc` key to leave the vi editor, afterwhich we will exit vi editor 
  with the command pressing `:` and typing `wq!` then  hit `enter`
 
@@ -176,12 +176,29 @@ To run the created script, we can do so by adding `bash` or `./` in front of the
 ##### We will therefore repeat this process for the second Apache Instance, `Apache Server 2` so that we can have both instances running as an Apache server.
 
 
+## Connecting to the EC2 Instances
+###### Connect to the EC2 instance by running the command `ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>`
+This connects terminal to the EC2 instance using SSH, which is a Secure Shell network communication protocol that enables two computers to communicate.
+
+
+<img width="810" alt="termius nginx" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/7caa0611-35d9-4cbf-bd0f-512ad021f0c8">
+
+
+## Updating Index Files
+##### It is best practice to update index files on the instance
+This is done using the command `sudo apt update`, this downloads the most recent packages from sources.
+
+
+<img width="901" alt="Nginx apt update" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5a2e0359-1c1a-4d2d-aadf-5d8bd1077ef1">
+
+
+
 ## Deployment of Nginx as a Load Balancer using Shell Script
 ##### Automate the Deployment of Nginx as a Load Balancer using Shell Script
 Having successfully deployed and configured two webservers, we will move on to the load balancer which is `Instance B`
 
 
-Now we will create a shell script file named `nginx` with as bash extension `.sh`, hence the file name will be `nginx.sh` 
+Now we will create a shell script file named `nginx` with as bash extension `.sh`, hence the file name will be `nginx.sh` with the command `sudo vi nginx.sh`
 This will be done with the vi text editor, on the vi text editor we will enter the insert mode with `i`, then we will paste the above script in it, press the `esc` key to leave the vi editor, afterwhich we will exit vi editor 
  with the command pressing `:` and typing `wq!` then  hit `enter`
 
@@ -246,15 +263,23 @@ sudo systemctl restart nginx
 ```
 
 
+<img width="1274" alt="vi Nginx" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/163555fc-c68e-4fb2-8b58-215a5cd4d8bc">
+
 
  ##### Granting Permissions
- Now we will change the permissions on the file to make it executable with the following command `sudo chmod +x install.sh`
+ Now we will change the permissions on the file to make it executable with the following command `sudo chmod +x nginx.sh`
+
+
+<img width="409" alt="vi chmod termial" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/a95a1cc9-e5cf-419c-85a7-97ebb0a2a076">
 
  
 ##### Running the Script
 To run the created script, we can do so by adding `bash` or `./` in front of the file name (extension inclusive) followed by a space and the the public IP as shown below.
 
-`bash install.sh <public IP` or `./install.sh <public IP>`
+`bash nginx.sh PUBLIC_IP Webserver-1 Webserver-2` or `./nginx.sh PUBLIC_IP Webserver-1 Webserver-2`
 
 
-<img width="767" alt="Apache install" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/03be5509-7276-4896-8255-170427131e9e">
+<img width="856" alt="Nginx script run" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ccd81e1b-cd37-4a8f-a3e8-4fc1e655ccbf">
+
+
+
