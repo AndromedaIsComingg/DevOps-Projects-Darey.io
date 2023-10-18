@@ -103,7 +103,7 @@ This is done using the command `sudo apt update`, this downloads the most recent
 ###### All the process we need to deploy our web server has been codified in the shell script below:
 - This Automates the installation and configuration of Apache Webserver to listen on port 8000
 - Usage : Call the script and pass in the public IP of your EC2 instance as the first argument as shown below
-  `./install_configure_apache.sh <public IP>`
+  `./install.sh <public IP>`
 
 
 ```bash
@@ -112,7 +112,7 @@ This is done using the command `sudo apt update`, this downloads the most recent
 ####################################################################################################################
 ##### This automates the installation and configuring of apache webserver to listen on port 8000
 ##### Usage: Call the script and pass in the Public_IP of your EC2 instance as the first argument as shown below:
-######## ./install_configure_apache.sh 127.0.0.1
+######## ./install.sh <public IP>
 ####################################################################################################################
 
 set -x # debug mode
@@ -151,4 +151,110 @@ sudo systemctl restart apache2
 
 ```
 
-## Implementing Loadbalancers with Nginx
+## Creating a Shell script file to Install Apache
+##### Now we will create a shell script file named `install` with as bash extension `.sh`, hence the file name will be `install.sh` 
+This will be done with the vi text editor, on the vi text editor we will enter the insert mode with `i`, then we will paste the above script in it, press the `esc` key to leave the vi editor, afterwhich we will exit vi editor 
+ with the command pressing `:` and typing `wq!` then  hit `enter`
+
+
+<img width="824" alt="vi script apache" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/cc19dcc0-702c-4b1f-b9aa-f878575bb3a4">
+
+
+ ##### Granting Permissions
+ Now we will change the permissions on the file to make it executable with the following command `sudo chmod +x install.sh`
+
+ 
+##### Running the Script
+To run the created script, we can do so by adding `bash` or `./` in front of the file name (extension inclusive) followed by a space and the the public IP as shown below.
+
+`bash install.sh <public IP` or `./install.sh <public IP>`
+
+
+<img width="767" alt="Apache install" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/03be5509-7276-4896-8255-170427131e9e">
+
+
+##### We will therefore repeat this process for the second Apache Instance, `Apache Server 2` so that we can have both instances running as an Apache server.
+
+
+## Deployment of Nginx as a Load Balancer using Shell Script
+##### Automate the Deployment of Nginx as a Load Balancer using Shell Script
+Having successfully deployed and configured two webservers, we will move on to the load balancer which is `Instance B`
+
+
+Now we will create a shell script file named `nginx` with as bash extension `.sh`, hence the file name will be `nginx.sh` 
+This will be done with the vi text editor, on the vi text editor we will enter the insert mode with `i`, then we will paste the above script in it, press the `esc` key to leave the vi editor, afterwhich we will exit vi editor 
+ with the command pressing `:` and typing `wq!` then  hit `enter`
+
+
+```bash
+#!/bin/bash
+
+######################################################################################################################
+##### This automates the configuration of Nginx to act as a load balancer
+##### Usage: The script is called with 3 command line arguments. The public IP of the EC2 instance where Nginx is installed
+##### the webserver urls for which the load balancer distributes traffic. An example of how to call the script is shown below:
+##### ./nginx.sh PUBLIC_IP Webserver-1 Webserver-2
+#####  ./nginx.sh <public IP Instance A>:8000  <public IP Instance C>:8000
+############################################################################################################# 
+
+PUBLIC_IP=$1
+firstWebserver=$2
+secondWebserver=$3
+
+[ -z "${PUBLIC_IP}" ] && echo "Please pass the Public IP of your EC2 instance as the argument to the script" && exit 1
+
+[ -z "${firstWebserver}" ] && echo "Please pass the Public IP together with its port number in this format: 127.0.0.1:8000 as the second argument to the script" && exit 1
+
+[ -z "${secondWebserver}" ] && echo "Please pass the Public IP together with its port number in this format: 127.0.0.1:8000 as the third argument to the script" && exit 1
+
+set -x # debug mode
+set -e # exit the script if there is an error
+set -o pipefail # exit the script when there is a pipe failure
+
+
+sudo apt update -y && sudo apt install nginx -y
+sudo systemctl status nginx
+
+if [[ $? -eq 0 ]]; then
+    sudo touch /etc/nginx/conf.d/loadbalancer.conf
+
+    sudo chmod 777 /etc/nginx/conf.d/loadbalancer.conf
+    sudo chmod 777 -R /etc/nginx/
+
+    
+    echo " upstream backend_servers {
+
+            # your are to replace the public IP and Port to that of your webservers
+            server  "${firstWebserver}"; # public IP and port for webserser 1
+            server "${secondWebserver}"; # public IP and port for webserver 2
+
+            }
+
+           server {
+            listen 80;
+            server_name "${PUBLIC_IP}";
+
+            location / {
+                proxy_pass http://backend_servers;   
+            }
+    } " > /etc/nginx/conf.d/loadbalancer.conf
+fi
+
+sudo nginx -t
+
+sudo systemctl restart nginx
+```
+
+
+
+ ##### Granting Permissions
+ Now we will change the permissions on the file to make it executable with the following command `sudo chmod +x install.sh`
+
+ 
+##### Running the Script
+To run the created script, we can do so by adding `bash` or `./` in front of the file name (extension inclusive) followed by a space and the the public IP as shown below.
+
+`bash install.sh <public IP` or `./install.sh <public IP>`
+
+
+<img width="767" alt="Apache install" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/03be5509-7276-4896-8255-170427131e9e">
