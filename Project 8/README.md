@@ -266,6 +266,13 @@ sudo systemctl restart nginx
 <img width="1274" alt="vi Nginx" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/163555fc-c68e-4fb2-8b58-215a5cd4d8bc">
 
 
+##### Please take note to replace the public IP of both savers in the highlighted area as commented out in the script
+
+
+<img width="870" alt="COMMENT REPLACE" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/0f26cd59-1d1f-4299-83b1-907fba6fa028">
+
+
+
  ##### Granting Permissions
  Now we will change the permissions on the file to make it executable with the following command `sudo chmod +x nginx.sh`
 
@@ -279,7 +286,7 @@ To run the created script, we can do so by adding `bash` or `./` in front of the
 `bash nginx.sh PUBLIC_IP Webserver-1 Webserver-2` or `./nginx.sh PUBLIC_IP Webserver-1 Webserver-2`
 
 
-<img width="856" alt="Nginx script run" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ccd81e1b-cd37-4a8f-a3e8-4fc1e655ccbf">
+<img width="1212" alt="Nginx corrt run" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/2fd2d207-8e81-422a-ab43-d4576a43360b">
 
 
 ## Verifying the Setup
