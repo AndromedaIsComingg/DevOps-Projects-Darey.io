@@ -282,4 +282,65 @@ To run the created script, we can do so by adding `bash` or `./` in front of the
 <img width="856" alt="Nginx script run" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ccd81e1b-cd37-4a8f-a3e8-4fc1e655ccbf">
 
 
+## Verifying the Setup
+##### This is done by entering the public IP and port number of the servers in the URL bar of a web browser and also the public IP of the Nginx (Load Balancer) in web browser.
 
+Instance A name - `Apache Server`
+
+
+<img width="523" alt="server 1" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/430c042f-08b5-4590-91bf-ba77a9482849">
+
+
+Instace C name - `Apache Server 2`
+
+
+<img width="554" alt="server 2" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8e9b7f7f-3aa1-412d-b7d0-740f2d93ee0a">
+
+
+Instance B name - `Nginx Loadbalancer`
+
+
+<img width="588" alt="Nginx" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/a6188edc-429a-4c8f-84bb-992d86553e95">
+
+
+**Now that the public IP of the Nginx instance is displaying the same pages served by the Apache Servers on a web browser, Nginx is therefore serving the purpose of of load balancing between the two Apache servers and the processes were automated using shell scripts.**
+
+
+
+##                                    Appendix
+
+### Load Balancing Algorithms
+
+
+#### 1. Dynamic load balancing algorithms
+
+##### Least connection: 
+Checks which servers have the fewest connections open at the time and sends traffic to those servers. This assumes all connections require roughly equal processing power.
+
+
+##### Weighted least connection: 
+Gives administrators the ability to assign different weights to each server, assuming that some servers can handle more connections than others.
+
+
+##### Weighted response time: 
+Averages the response time of each server, and combines that with the number of connections each server has open to determine where to send traffic. By sending traffic to the servers with the quickest response time, the algorithm ensures faster service for users.
+
+
+##### Resource-based: 
+Distributes load based on what resources each server has available at the time. Specialized software (called an "agent") running on each server measures that server's available CPU and memory, and the load balancer queries the agent before distributing traffic to that server.
+
+
+#### 2. Static load balancing algorithms
+###### Round robin: 
+Round robin load balancing distributes traffic to a list of servers in rotation using the Domain Name System (DNS). An authoritative nameserver will have a list of different A records for a domain and provides a different one in response to each DNS query.
+
+
+##### Weighted round robin: 
+Allows an administrator to assign different weights to each server. Servers deemed able to handle more traffic will receive slightly more. Weighting can be configured within DNS records.
+
+
+##### IP hash: 
+Combines incoming traffic's source and destination IP addresses and uses a mathematical function to convert it into a hash. Based on the hash, the connection is assigned to a specific server.
+
+
+---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
