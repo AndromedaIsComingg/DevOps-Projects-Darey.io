@@ -295,19 +295,19 @@ To run the created script, we can do so by adding `bash` or `./` in front of the
 Instance A name - `Apache Server`
 
 
-<img width="523" alt="server 1" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/430c042f-08b5-4590-91bf-ba77a9482849">
+<img width="639" alt="servr 1 with IP" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/a5d7dac2-e0a5-4793-bfb6-5c666fefcdc2">
 
 
 Instace C name - `Apache Server 2`
 
 
-<img width="554" alt="server 2" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8e9b7f7f-3aa1-412d-b7d0-740f2d93ee0a">
+<img width="659" alt="server 2 IP" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/2de7bfcb-a8cf-4400-be7f-87007c5229f0">
 
 
 Instance B name - `Nginx Loadbalancer`
 
 
-<img width="588" alt="Nginx" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/a6188edc-429a-4c8f-84bb-992d86553e95">
+<img width="631" alt="Nginx balll ip" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c8b1e3fd-2b03-4648-9c15-f1f8557b5e64">
 
 
 **Now that the public IP of the Nginx instance is displaying the same pages served by the Apache Servers on a web browser, Nginx is therefore serving the purpose of of load balancing between the two Apache servers and the processes were automated using shell scripts.**
