@@ -40,6 +40,18 @@ Houses database servers where information is stored and retrieved.
 Data in this tier is kept independent of application servers or business logic, and is managed and accessed with programs, such as MongoDB, Oracle, MySQL, and Microsoft SQL Server.
 
 
+##### In this project, we will be showcasing **Three-tier Architecture** while also ensuring that the disks used to store files on the Linux servers are adequately partitioned and managed through programs such as `gdisk` anad `LVM` respectively. 
 
+
+#### The prerequisites for the implementing Wordpress website with LVM Storage Management are as follows:
+
+- Stable network connection
+- How to create an EC2 Instance
+- Access to the terminal
+- A user account with sudo privileges
+- Basic Unix command knowledge
+- A Laptop and PC to serve as a client
+- AWS EC2 instance running a Linux OS to serve as a Web server
+- AWS EC2 instance running a Linux OS to serve as database (DB) server
 
 
