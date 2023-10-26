@@ -55,3 +55,9 @@ Data in this tier is kept independent of application servers or business logic, 
 - AWS EC2 instance running a Linux OS to serve as database (DB) server
 
 
+## Implementing LVM on Linux servers (Web and Database servers)
+
+##### Prepare a Web Server
+Launch an EC2 instance that will serve as "Web Server"
+
+Create 3 volumes in the same AZ as your Web Server EC2, each of 10GB
