@@ -223,7 +223,7 @@ This is done with the command `sudo mount /dev/webdata-vg/logs-lv /var/log`
 
 
 ##### Restoring log files back into /var/log directory
-This is done with the command 'sudo rsync -av /home/recovery/logs/log/. /var/log`
+This is done with the command `sudo rsync -av /home/recovery/logs/log/. /var/log`
 
 ![Restoring backup](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5556393e-7df7-4165-adfd-1c04570b8e6c)
 
