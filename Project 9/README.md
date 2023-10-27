@@ -56,7 +56,7 @@ Data in this tier is kept independent of application servers or business logic, 
 - Access to the terminal
 - A user account with sudo privileges
 - Basic Unix command knowledge
-- A Laptop and PC to serve as a client
+- A Laptop or PC to serve as a client
 - AWS EC2 instance running a Linux OS to serve as a Web server
 - AWS EC2 instance running a Linux OS to serve as database (DB) server
 
@@ -65,5 +65,34 @@ Data in this tier is kept independent of application servers or business logic, 
 
 ##### Prepare a Web Server
 Launch an EC2 instance that will serve as "Web Server"
+For this we will be using the Redhat distribution of the Linux OS
+For guide on how to create an EC2 instance and connect to one, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/Other-Projects/blob/main/Project%204/README.md)
+But it is important to note that the user name for the **Redhat** distribution on terminal will be `ec2-user` instead of `ubuntu` which was used for the **Ubuntu** distribution.
 
-Create 3 volumes in the same AZ as your Web Server EC2, each of 10GB
+Create 3 volumes in the same as your Web Server EC2, each of 10GB
+
+![instance volumes](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/1247179b-ac43-40de-8a12-6fd2d88d7d98)
+
+
+##### After connecting to the ec2 instance from terminal, we will use the `lsblk` command to see a list of block devices that is attached to the server
+
+
+![lsblk](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c793cfb7-befc-48f6-9d45-a30288912b07)
+
+
+##### Using the `gdisk` command to create partition
+Now we will create a single partition on each of the added volumes using the following command 'sudo gdisk /dev/<volume label>`
+Note that the name of each block is to be replaced in place holder the in the command.
+
+upon the first prompt, type 'n' to create a new partition and upon the last prompt, type 'w' to save the partition.
+
+
+![gdisk](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/d3ead504-9ba6-432e-939d-f184ca32f093)
+
+
+##### Checking for new blocks
+Now we will reuse the `lsblk` command to check for all the volumes including the newly created blocks.
+
+![lsblk partitnd](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/91ff051b-0624-4c63-8550-643e0043f50b)
+
+
