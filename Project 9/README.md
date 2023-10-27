@@ -40,6 +40,12 @@ Houses database servers where information is stored and retrieved.
 Data in this tier is kept independent of application servers or business logic, and is managed and accessed with programs, such as MongoDB, Oracle, MySQL, and Microsoft SQL Server.
 
 
+##### The 3 tier architecture concept is illustrated with the diagram below: 
+
+
+![Screen Shot 2023-10-27 at 4 46 05 AM](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/ddca816e-23ea-4625-b002-93fcbadac762)
+
+
 ##### In this project, we will be showcasing **Three-tier Architecture** while also ensuring that the disks used to store files on the Linux servers are adequately partitioned and managed through programs such as `gdisk` anad `LVM` respectively. 
 
 
