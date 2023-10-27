@@ -96,3 +96,30 @@ Now we will reuse the `lsblk` command to check for all the volumes including the
 ![lsblk partitnd](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/91ff051b-0624-4c63-8550-643e0043f50b)
 
 
+##### Server Update
+It is best practice to update the server.
+This will be done using the `yum` package manager as this is the packet manager for RedHat and CentOS
+
+
+![yum update](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/50c1648e-0ce4-4826-bbdd-32b5db2f63d3)
+
+
+##### Installing `lvm` and chechking for available partitions
+use the the`sudo yum install lvm2` command to install `lvm` and `sudo lvmdiskscan` to check for available partitions.
+
+
+![lmv2 install](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/bdde2525-c1ba-49e8-a484-dc81cdf22913)
+
+##### lvmdiskscan
+
+![lvmdiskscan initial](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/74766a82-fd28-43df-8b57-cedcc8c57f89)
+
+
+##### Marking physical volumes
+Use the `pvcreate` utility to mark each of the 3 disks as physical volumes (PVs) is to be used by LVM
+using the command `pvcreate /dev/<volume label>`
+
+
+##### Verifying physical volumes
+
+to verify the just created physical volumes, we will use the command `sudo pvs`
