@@ -71,8 +71,7 @@ But it is important to note that the user name for the **Redhat** distribution o
 
 Create 3 volumes in the same as your Web Server EC2, each of 10GB
 
-![instance volumes](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/1247179b-ac43-40de-8a12-6fd2d88d7d98)
-
+![EC2storage vol DB](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/1fda82b8-5a81-49dd-9bc5-8a63af13642a)
 
 ##### After connecting to the ec2 instance from terminal, we will use the `lsblk` command to see a list of block devices that is attached to the server
 
@@ -257,6 +256,9 @@ This is done by using the command `df -h`
 
 ## Installing wordpress and configuring to use MySQL Database
 
+##### Preparing the Database server
+For this, we will launch another Linux instance, `DB Server`, and we will be using the same flavour, `RedHat`.
+Also, we will be repeating the same processes as in the `Web Server` instance, but instead of `apps-lv` we will create `db-lv` and mount it to `/db` instead of `/var/www/html/`.
 
 
 
