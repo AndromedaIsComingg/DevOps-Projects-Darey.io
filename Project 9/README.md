@@ -80,7 +80,7 @@ Create 3 volumes in the same as your Web Server EC2, each of 10GB
 
 
 ##### Using the `gdisk` command to create partition
-Now we will create a single partition on each of the added volumes using the following command 'sudo gdisk /dev/<volume label>`
+Now we will create a single partition on each of the added volumes using the following command `sudo gdisk /dev/<volume label>`
 Note that the name of each block is to be replaced in place holder the in the command.
 
 upon the first prompt, type 'n' to create a new partition and upon the last prompt, type 'w' to save the partition.
@@ -116,7 +116,7 @@ use the the`sudo yum install lvm2` command to install `lvm` and `sudo lvmdisksca
 
 ##### Marking physical volumes
 Use the `pvcreate` utility to mark each of the 3 disks as physical volumes (PVs) is to be used by LVM
-using the command `pvcreate /dev/<volume label>`
+using the command `sudo pvcreate /dev/<volume label>`
 please note that partition name is to be replaced in the place holder
 
 
