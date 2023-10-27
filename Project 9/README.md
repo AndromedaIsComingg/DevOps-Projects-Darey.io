@@ -254,11 +254,111 @@ This is done by using the command `df -h`
 ![verify setup](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/e1645334-9ac9-4fdd-bb49-6860d913b32c)
 
 
+
 ## Installing wordpress and configuring to use MySQL Database
 
 ##### Preparing the Database server
 For this, we will launch another Linux instance, `DB Server`, and we will be using the same flavour, `RedHat`.
-Also, we will be repeating the same processes as in the `Web Server` instance, but instead of `apps-lv` we will create `db-lv` and mount it to `/db` instead of `/var/www/html/`.
+Also, we will be repeating the same processes as in the `Web Server` instance, but instead of `apps-lv` we will create `db-lv` and mount it to `/db` instead of `/var/www/html/`. after which we will verify the whole setup, and we should have something like this
+
+![Verify setup DB](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5a5b1ee2-3b51-433f-900c-6cf75539e485)
+
+
+##### Installing wget, Apache and its dependencies
+This will be done on the `Web Server` using the command `sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json`
+
+![wget apache and dependencies](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/bf1a6ab3-ba44-49e3-81f9-25f3e952078c)
 
 
 
+##### Starting Apache
+This will be done with the following commands
+
+`sudo systemctl enable httpd`
+
+
+`sudo systemctl start httpd`
+
+![restarting apache](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/6fd0f1b2-3307-4230-bd84-4cea465c67ba)
+
+
+
+##### Installing PHP and its dependencies
+This is done using the following command
+
+`mkdir wordpress
+cd   wordpress
+sudo wget http://wordpress.org/latest.tar.gz
+sudo tar xzvf latest.tar.gz
+sudo rm -rf latest.tar.gz
+cp wordpress/wp-config-sample.php wordpress/wp-config.php
+cp -R wordpress /var/www/html/`
+
+![PHP and depencies](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/16a81094-d94f-41b3-98dd-bc97b3d53b7b)
+
+
+##### Restarting Apache
+This is done with the command `sudo systemctl restart httpd`
+
+![Restart apache ag](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/7378ff65-d37f-47d8-a50c-7feb19cdb593)
+
+
+##### Downloading Wordpress
+We will downloadnand copy wordpress to the directory var/www/html
+note that this will be done on the Web Server, aslo, we will need to install the `wget` module first using thw comand `sudo yum install wget`
+before we proceed to use the command 
+
+`mkdir wordpress
+cd   wordpress
+sudo wget http://wordpress.org/latest.tar.gz
+sudo tar xzvf latest.tar.gz
+sudo rm -rf latest.tar.gz
+sudo cp wordpress/wp-config-sample.php wordpress/wp-config.php
+sudo cp -R wordpress /var/www/html/`
+
+
+It is important to note that sudo privilages are needed to run these commands.
+
+![download wordpress](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/aa9c93f2-5edf-4d11-898b-4eed3283fadf)
+
+
+##### Configure SElinux Policies
+This is done using the command below
+
+` sudo chown -R apache:apache /var/www/html/wordpress
+ sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
+ sudo setsebool -P httpd_can_network_connect=1`
+![SElinux policies](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/6daf3049-d833-4b02-b6a9-2f1160bed1ec)
+
+
+##### Installing MySQL on Database Server
+This is carried out with the command
+`sudo yum update
+sudo yum install mysql-server`
+and vereified with the command `sudo systemctl status mysqld`
+Note that the 'apt update' part of the command is to update the server using the packet manager
+
+![mysql on db](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/cc6db816-5d5a-4e31-a040-a95b9125a3da)
+
+
+##### Configuring DB to work with wordpress
+This is done using the following code 
+
+`sudo mysql
+CREATE DATABASE wordpress;
+CREATE USER `myuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
+GRANT ALL ON wordpress.* TO 'myuser'@'<Web-Server-Private-IP-Address>';
+FLUSH PRIVILEGES;
+SHOW DATABASES;
+exit`
+
+
+![myql db to wordpress](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/df82d63c-e1c5-454e-84dd-a5ce66d94836)
+
+
+##### Configuring Wordpress to connect with remote database
+
+For this , we will need to open port 3306 on the DB Server, and for extra security, we will allow access to the DB Server only from the Web Server's IP address. So in the inbound rule configuration, specify source as /32
+
+
+![port 3306](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8e45f66e-aab0-4a15-9b39-1e789db0d9c8)
