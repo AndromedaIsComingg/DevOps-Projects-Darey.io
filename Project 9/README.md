@@ -137,7 +137,91 @@ to verify the just created physical volumes, we will use the command `sudo pvs`
 Use the vgcreate utility to add all 3 physical volumes to a volume group(VG). Name the VG `webdata-vg` with the code `sudo vgcreate webdata-vg /dev/<volume label1> /dev/<volume label2> /dev/<volume label3>`
 please note to replace the names of the partitions in the place holders.
 
+![VG Create](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/66517e66-fe66-4a26-a8b4-ef233aa7a1ce)
 
 
 ##### Verifying VG
 This is done to verify the created VG using the command `sudo vgs`
+
+![sudo vgs](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/eb85d3d8-eb61-4349-b697-48176e2ca5c8)
+
+
+##### Creating Logical Volumes
+Use the `lvcreate` utility to create two logical volumes `apps-lv` (Use half of the PV size) and `logs-lv` 
+**lv use the will use the remaining space of the PV size**
+Note that apps-lv will be used to store data for thw website, while logs-lv will be used to stored data for logs.
+This will be done using the comands
+`sudo lvcreate -n apps-lv -L 14G webdata-vg`
+`sudo lvcreate -n logs-lv -L 14G webdata-vg`
+
+
+![logical volumes](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/0ee24d52-9e65-451f-8a3f-cde331170661)
+
+
+##### Verifyinging Logical Volumes
+To verify that logical volumes have been created, we will use the command `sudo lvs`
+
+
+![logical vols verify](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/6aff1239-5228-4104-a76a-6982bfcaaef1)
+
+
+##### Verifyinging The Entire Setup
+To verify the entire setup, we will do so with the codes below
+
+`sudo vgdisplay -v #view complete setup - VG, PV, and LV`
+
+![setup verify](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/fc98d02d-dadb-4fad-9fb3-0e03732aca1c)
+
+
+`sudo lsblk` 
+![setup verify lsblk](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/018e7dcf-74a2-47d3-9815-44f1608dff4f)
+
+
+##### Formating Logical Volumes
+Use `mkfs.ext4` to format the logical volumes with ext4 file system.
+This is done using the commands below
+`sudo mkfs -t ext4 /dev/webdata-vg/apps-lv`
+`sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`
+
+![Formatng logical vols](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/62cdacfa-db80-4333-bd14-71f65b71e295)
+
+
+##### Creating /var/www/html directory 
+This directory is created to store website files using the `mkdir` command 
+`sudo mkdir -p /var/www/html`
+
+##### Creating /home/recovery/logs directory
+This directory is created to store backup log data
+
+
+##### Mount /var/www/html on apps-lv logical volume
+using the command `sudo mount /dev/webdata-vg/apps-lv /var/www/html/`
+
+
+##### Backing up files in the log directory
+Use the rsync utility to backup all the files in the log directory /var/log into /home/recovery/logs
+Note that this is required before mounting the file system.
+
+This is done using the command `sudo rsync -av /var/log/. /home/recovery/logs/`
+
+
+##### Mount /var/log on logs-lv logical volume. 
+It is important to know that all existing data on /var/log will be deleted, this is why the ealier backup is very important.
+This is done with the command `sudo mount /dev/webdata-vg/logs-lv /var/log`
+
+
+##### Restoring log files back into /var/log directory
+This is done with the command 'sudo rsync -av /home/recovery/logs/log/. /var/log`
+
+
+##### Update /etc/fstab file so that the mount configuration will persist after restart of the server
+This is done using the  `UUID` of `/etc/fstab` file to update the device using the command `sudo blkid`
+
+
+This file will be edited using the vi 
+
+
+
+
+
+
