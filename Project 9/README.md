@@ -174,6 +174,8 @@ To verify the entire setup, we will do so with the codes below
 
 
 `sudo lsblk` 
+
+
 ![setup verify lsblk](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/018e7dcf-74a2-47d3-9815-44f1608dff4f)
 
 
@@ -183,8 +185,7 @@ This is done using the commands below
 `sudo mkfs -t ext4 /dev/webdata-vg/apps-lv`
 `sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`
 
-![Formatng logical vols](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/62cdacfa-db80-4333-bd14-71f65b71e295)
-
+![Formatng logical vols](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/9584b17f-7f01-4043-85cf-29ae7e46287d)
 
 ##### Creating /var/www/html directory 
 This directory is created to store website files using the `mkdir` command 
@@ -253,6 +254,8 @@ This is done by using the command `df -h`
 
 ![verify setup](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/e1645334-9ac9-4fdd-bb49-6860d913b32c)
 
+
+## Installing wordpress and configuring to use MySQL Database
 
 
 
