@@ -118,8 +118,26 @@ use the the`sudo yum install lvm2` command to install `lvm` and `sudo lvmdisksca
 ##### Marking physical volumes
 Use the `pvcreate` utility to mark each of the 3 disks as physical volumes (PVs) is to be used by LVM
 using the command `pvcreate /dev/<volume label>`
+please note that partition name is to be replaced in the place holder
+
+
+![physical volumes](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/e1e2c151-46b3-4d12-a27e-2b3a15d7f3eb)
+
 
 
 ##### Verifying physical volumes
 
 to verify the just created physical volumes, we will use the command `sudo pvs`
+
+
+![sudo pvs](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/b7adac3c-86a9-442e-b48d-6436f4ed3adb)
+
+
+##### Creating Group for volumes
+Use the vgcreate utility to add all 3 physical volumes to a volume group(VG). Name the VG `webdata-vg` with the code `sudo vgcreate webdata-vg /dev/<volume label1> /dev/<volume label2> /dev/<volume label3>`
+please note to replace the names of the partitions in the place holders.
+
+
+
+##### Verifying VG
+This is done to verify the created VG using the command `sudo vgs`
