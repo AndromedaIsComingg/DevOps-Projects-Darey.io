@@ -189,13 +189,21 @@ This is done using the commands below
 ##### Creating /var/www/html directory 
 This directory is created to store website files using the `mkdir` command 
 `sudo mkdir -p /var/www/html`
+![html dir](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c2248580-cfc5-4bb5-9bf8-8c0289a1a07d)
+
+
 
 ##### Creating /home/recovery/logs directory
 This directory is created to store backup log data
+`sudo mkdir -p /home/recovery/logs`
+![logs dir](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/fac8dc00-24a9-4d3b-b246-fcd5b9897a8a)
 
 
 ##### Mount /var/www/html on apps-lv logical volume
 using the command `sudo mount /dev/webdata-vg/apps-lv /var/www/html/`
+
+![mount LV](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/f0dfff5a-ee66-4ea6-b938-408a387d7342)
+
 
 
 ##### Backing up files in the log directory
@@ -204,22 +212,46 @@ Note that this is required before mounting the file system.
 
 This is done using the command `sudo rsync -av /var/log/. /home/recovery/logs/`
 
+![backup](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/3c9d33f8-043c-4c35-93b1-47c5cac4bdbd)
+
 
 ##### Mount /var/log on logs-lv logical volume. 
 It is important to know that all existing data on /var/log will be deleted, this is why the ealier backup is very important.
 This is done with the command `sudo mount /dev/webdata-vg/logs-lv /var/log`
 
+![remount](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/0d02fcf7-8cbe-478e-a146-b1339c59954f)
+
 
 ##### Restoring log files back into /var/log directory
 This is done with the command 'sudo rsync -av /home/recovery/logs/log/. /var/log`
 
+![Restoring backup](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/5556393e-7df7-4165-adfd-1c04570b8e6c)
+
 
 ##### Update /etc/fstab file so that the mount configuration will persist after restart of the server
-This is done using the  `UUID` of `/etc/fstab` file to update the device using the command `sudo blkid`
+This is done using the  `UUID` of `/etc/fstab` file to update the device using the command `sudo blkid` to fetch the UUID.
+
+![UUID](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/1990feeb-c172-42c5-9762-e75da4243b68)
+
+The `/etc/fstab` file will be edited using the vi text editor, where the UUIDs  will be pasted without the leading and ending quotes using `sudo vi /etc/fstab`
+Using the vi editor, we will to switch to insert mode by pressing key `i` afterwhich we will save and exit the vi editor with the comand `wq!`
+
+![vi UUID](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/1bd59e4c-b439-42e2-9754-d5fde77db922)
 
 
-This file will be edited using the vi 
 
+##### Testing the configuration and reloadind the daemon
+This is done with the commands:
+
+`sudo mount -a`
+`sudo systemctl daemon-reload`
+
+![system reload](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/423f6340-bdbf-476c-8d78-6815b05cb019)
+
+##### Verifying the setup
+This is done by using the command `df -h`
+
+![verify setup](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/e1645334-9ac9-4fdd-bb49-6860d913b32c)
 
 
 
