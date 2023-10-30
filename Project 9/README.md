@@ -362,3 +362,53 @@ For this , we will need to open port 3306 on the DB Server, and for extra securi
 
 
 ![port 3306](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8e45f66e-aab0-4a15-9b39-1e789db0d9c8)
+
+
+##### Installing MySQL CLient
+This is done to test if we can connect from the Web Server to the DB Server using `mysql client`
+Installation is done using the command `sudo yum install mysql`
+
+![mysql client install](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/72da7c2e-b056-4601-81e9-619d232dc252)
+
+
+To Test connection, we will use the following command `mysql -h 172.31.47.104 -u myuser -p`
+
+
+![connecting mysql client to db](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/524169f0-1997-4a54-955b-70dfb91d384d)
+
+
+**Verify that the `showdatabes;` command can be successfully executed to see a list of all existing databases.**
+
+![show databases](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c3c82ac3-3852-49ea-9260-e3429524901e)
+
+
+##### Changing permissions and configuring Apache to use WordPress
+This is done by editing the configuration file `wp-config.php` which can be found in the directory `/var/www//html/wordpress/wp-config.php` 
+To edit this file we will use the vi text editor `sudo vi /var/www//html/wordpress/wp-config.php`
+
+**The configuration goes thus:**
+- Database username will be changed to "myuser"
+- Database password will be changed to "mypass"
+- Database host name will be changed to the DB server's private IP
+
+A quick reminder on how to use the vi text editor, we use key `i` to switch to the insert mode and when we are done editing, we exit the insert mode hitting the "esc" key and the we write and quit changes using the command `:wq!`
+
+![configuring wp-config](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/9f83dee0-f9a7-4be5-828c-7de54a7c83db)
+
+
+**Ensuring that pot 80 is open in the Inbound Rules of the Web Server Such that it accepts traffic from anywhere**
+
+![inbound port 80](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8a2bf4c0-3881-4218-ad16-c8791372ba1f)
+
+
+##### Accessing WordPress from a Browser
+This is done by typing the following in a Web Browser `http://<Web-Server-Public_IP-Address>/wordpress/`
+
+![wordpress welcome page](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/7d34f09c-3e92-467d-b789-c65e37b4e915)
+
+
+##### upon Seeing the page above, we have successfully implemented Wordpress with an LVM Storage Management System.
+
+
+---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
+
