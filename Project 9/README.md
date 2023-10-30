@@ -396,6 +396,12 @@ A quick reminder on how to use the vi text editor, we use key `i` to switch to t
 ![configuring wp-config](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/9f83dee0-f9a7-4be5-828c-7de54a7c83db)
 
 
+
+**Apache will be restarted for these changes to take effect**
+This is done using the command `sudo systemctl restart httpd`
+Please note that `httpd` is used here because we are working with the Fedora distribution of Linux.
+
+
 **Ensuring that pot 80 is open in the Inbound Rules of the Web Server Such that it accepts traffic from anywhere**
 
 ![inbound port 80](https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/8a2bf4c0-3881-4218-ad16-c8791372ba1f)
