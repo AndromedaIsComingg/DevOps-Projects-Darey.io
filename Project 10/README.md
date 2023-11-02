@@ -20,6 +20,19 @@ For this project execution, the following components will be required.
 4. Storage Server - Linux RedHat Enterprise
 5. Programming Language - PHP
 6. Code Repository - GitHub
+7. Stable network connection
+8. Access to the terminal
+9. A user account with sudo privileges
+10. A Laptop or PC to serve as a client
 
 
 
+
+##### Prerequisites
+- Knowledge of how to create an EC2 Instance and how to connect to it
+- Understanding of basic Unix command knowledge
+- How to implement a website with LVM Storage Management
+
+
+## Implementing a Business Website Using NFS for the Backend File Storage
+We will begin by launching an EC2 instance
