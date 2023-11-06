@@ -40,5 +40,20 @@ One the diagram below, you can seea common pattern where several stateless Web S
 <img width="741" alt="Screen Shot 2023-11-02 at 6 14 36 PM" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c84a3d85-0a1a-4a22-8d4c-9c9cdaa653c8">
 
 
+
+
+##### Create mount points on /mnt directory for logical volumes as follows:
+Using the `mkdir` command, we will make the following directories and mount accordingly
+- Mount lv-apps on /mnt/apps (to be used by webservers)
+- Mount lv-logs on /mnt/logs (tp be used by webservers logs)
+-  Mount lv-opt on /mnt/opt ( to be used bu jenkins server in the subsequent project)
+  This is done using the commands:
+`sudo mount /dev/webdata-vg/lv-apps /mnt/apps
+sudo mount /dev/webdata-vg/lv-opt /mnt/pot
+sudo mount /dev/webdata-vg/lv-logs /mnt/logs`
+
 ## Implementing a Business Website Using NFS for the Backend File Storage
-We will begin by launching an EC2 instance
+We will begin by launching Linux RedHat EC2 instance, named "Web Server" 
+
+
+## Install NFS server, configure it to start on reboot and make sure it is up and running
