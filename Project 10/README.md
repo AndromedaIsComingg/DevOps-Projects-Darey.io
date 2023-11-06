@@ -93,4 +93,56 @@ Then we start the service, enable it and check the status with the commands belo
 <img width="914" alt="NFS start enable   status" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/38ec6101-e72f-4c8c-9741-a2cd57e2d3f3">
 
 
+Export the mount for webservers' `subnet CIDR` to connect a clients. For simplicity, you will install your three Web Servers inside the same subnet, but in production set up you would probably want to seperate each tier inside its own subnet for higher level of security. To check your `subnet CIDR`, open your EC2 details in AWS web console and locate the "Networking tab and open a Subnet link, which will open a new window from where we will check the subnet and locate the `IPV4 CIDR` uder which the subnet CIDR appears as shown in the diagrams below.
+
+
+<img width="1058" alt="subnet network" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/5d666aff-3481-40b4-98fd-7569f362b3bf">
+
+
+<img width="1005" alt="subnet CIDR" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/48a2bb37-2ec8-41af-b581-b97ad932826c">
+
+
+We will configure permission that will allow the Web Servers to read, write and execute files on NFS with the following command.
+sudo chown -R nobody: /mnt/apps
+sudo chown -R nobody: /mnt/logs
+sudo chown -R nobody: /mnt/opt
+
+`sudo chmod -R 777 /mnt/apps
+sudo chmod -R 777 /mnt/logs
+sudo chmod -R 777 /mnt/opt`
+
+and restart NFS with the command below
+`sudo systemctl restart nfs-server.service`
+
+
+<img width="551" alt="ownership" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/552b3754-6686-402c-af40-a098f92ec235">
+
+
+Configure access to NFS for clients within the same subnet (example of Subnet CIDR - 172.31.32.0/20)
+
+This will be done by editing an `export` file with the vi text editor
+
+sudo vi /etc/exports
+
+/mnt/apps <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/logs <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/opt <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+
+<img width="446" alt="export" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/1bde40a8-cb5c-4f7c-87be-bc7cdfd8f12f">
+
+
+Now it is time to check which port is used by NFS and open it in the Inbound rule of the Security Group.
+
+That is done using the command `rpinfo -p | grep nfs`
+
+
+<img width="370" alt="check port" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/434abbfb-ef23-4085-99bc-759100d5fe6f">
+
+
+In order for NFS server to be accessible from your client, you must also open the following ports: TCP 111, UDP 111, UDP 2049.
+
+
+<img width="1197" alt="inbound rules" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/9636ef22-afab-4da7-a6bc-62d4bdfe1927">
+
+
 
