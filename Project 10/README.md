@@ -34,11 +34,26 @@ For this project execution, the following components will be required.
 - How to implement a website with LVM Storage Management. For guide on this, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/Other-Projects/blob/main/Project%209/README.md)
 
 
-One the diagram below, you can seea common pattern where several stateless Web Servers share a common database and also access the same files using Network FIle System (NFS) as a shared storage file. Even though the NFS server might be located on a completely seperate hardware, for the Web Server, it looks like a local file system from where they can serve the same files.
+The difference in the LVM will be creating from the one above will be our mount point directory `/mnt`, Where `lv-apps` will be mounted on `/mnt/apps`, `lv-logs` will be mounted on `/mnt/logs` and `lv-opt` will be mounted on `/mnt/opt` 
+
+
+<img width="526" alt="logical volumes" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/0e613661-177d-4fd5-a3cd-f6f9d9ae413a">
+
+
+Also, instead of formating the disks as `ext4`. we will formats them as `xfs`
+
+<img width="567" alt="xfs format" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/16c6bd85-6718-4869-8a71-6c674ec0adf9">
+
+
+In the diagram below, you can see a common pattern where several stateless Web Servers share a common database and also access the same files using Network FIle System (NFS) as a shared storage file. Even though the NFS server might be located on a completely seperate hardware, for the Web Server, it looks like a local file system from where they can serve the same files.
 
 
 <img width="741" alt="Screen Shot 2023-11-02 at 6 14 36 PM" src="https://github.com/AndromedaIsComingg/Other-Projects/assets/140917780/c84a3d85-0a1a-4a22-8d4c-9c9cdaa653c8">
 
+
+
+## Implementing a Business Website Using NFS for the Backend File Storage
+We will begin by launching Linux RedHat EC2 instance, named "Web Server" 
 
 
 
@@ -48,12 +63,34 @@ Using the `mkdir` command, we will make the following directories and mount acco
 - Mount lv-logs on /mnt/logs (tp be used by webservers logs)
 -  Mount lv-opt on /mnt/opt ( to be used bu jenkins server in the subsequent project)
   This is done using the commands:
-`sudo mount /dev/webdata-vg/lv-apps /mnt/apps
-sudo mount /dev/webdata-vg/lv-opt /mnt/pot
-sudo mount /dev/webdata-vg/lv-logs /mnt/logs`
+`sudo mount /dev/webdata-vg/lv-apps /mnt/apps`
+'sudo mount /dev/webdata-vg/lv-opt /mnt/pot`
+`sudo mount /dev/webdata-vg/lv-logs /mnt/logs`
 
-## Implementing a Business Website Using NFS for the Backend File Storage
-We will begin by launching Linux RedHat EC2 instance, named "Web Server" 
+
+<img width="585" alt="mount" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/8de33c88-d736-4e3f-b6ff-59eedba0d6c8">
+
+
+
+Checking the logical volumes with the command `df -h`
+
+<img width="607" alt="mount + df -h" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/82336484-2c6e-498c-82e5-d8f1de484009">
 
 
 ## Install NFS server, configure it to start on reboot and make sure it is up and running
+We execute this using the command `sudo yum install nfs-utils -y`
+
+<img width="676" alt="NFS utility instal" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3d3f7eba-d700-44bf-a667-b973cf4f9712">
+
+
+Then we start the service, enable it and check the status with the commands below
+
+`sudo systemctl start nfs-server.service`
+`sudo systemctl enable nfs-server.service`
+`sudo systemctl status nfs-server.service`
+
+
+<img width="914" alt="NFS start enable   status" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/38ec6101-e72f-4c8c-9741-a2cd57e2d3f3">
+
+
+
