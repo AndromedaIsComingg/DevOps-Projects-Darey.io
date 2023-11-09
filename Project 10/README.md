@@ -144,5 +144,26 @@ In order for NFS server to be accessible from your client, you must also open th
 
 <img width="1197" alt="inbound rules" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/9636ef22-afab-4da7-a6bc-62d4bdfe1927">
 
+## Configuring a backend database as part of 3 tier architecture
+
+##### Installing MySQL server
+This is done with the command `sudo yum install mysql-server` 
+
+
+<img width="714" alt="mysql server install" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/237510fb-980f-4f04-9c1e-a3ed83bbd361">
+
+
+##### Create a Database 
+We will create a Database and name it `tooling` and a User `webaccess` and grant permission to `webaccess` user on `tooling` database to do anything only from the webservers `subnetcidr` using the following command
+`sudo mysql
+CREATE DATABASE tooling;
+CREATE USER `webaccess`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
+GRANT ALL ON tooling.* TO ‘webaccess’@‘172.31.16.0/20';
+FLUSH PRIVILEGES;
+SHOW DATABASES;
+exit`
+
+
+<img width="523" alt="Create DB   User" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/c6556dd3-359e-43de-9847-320d413cda66">
 
 
