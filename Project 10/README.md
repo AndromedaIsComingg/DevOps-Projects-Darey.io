@@ -185,5 +185,11 @@ During the next steps we will do following:
 ##### Install NFS Client
 
 
+The install the `NFS Client` with the command `sudo yum install nfs-utils nfs4-acl-tools -y`
 
 
+<img width="654" alt="NFS client" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/c88bd0ca-1f52-4d48-a554-e3e1eabe4cf3">
+
+
+##### Mount `/var/www/` and target the NFS server's export for app
+This is done with the following command `sudo mount -t nfs -o rw,nosuid <NFS-Server-Private-IP-Address>:/mnt/apps /var/www`
