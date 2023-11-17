@@ -206,18 +206,53 @@ verify that NFS was mounted successfully using the command `df -h`
 <img width="443" alt="df -h serv1" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/458fba92-92a9-42f3-ba96-f08faae76929">
 
 
-Also, we will make sure the changes persist on the web server after reboot by editing the followinf file `sudo vi /etc/fstab` and adding the following line of code `<NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0`
+Also, we will make sure the changes persist on the web server after reboot by editing the following file `sudo vi /etc/fstab` and adding the following line of code `<NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0`
 
 
 <img width="770" alt="vi fstab edit" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/310c074d-4abb-4e25-a022-b9de2d200fc6">
 
 
 ##### Installing Apache
-This is done so that content can be served, it is done using the command `sudo yum install httpd -y`
+This is done so that content can be served to thr end user, it is done using the command `sudo yum install httpd -y`
 
 <img width="648" alt="install httpd" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/861e4875-cfbd-4030-b8d6-0c406557895e">
 
 
 We will repeat the same step in creating another web server and mount it accordingly.
 We will verify that Apaches files and directory are available on the Web Server `/var/www` and also confirm that same file appear on `/mnt/apps` directory of the `NFS` Server. 
-We can solidify this test further by creating a new file from one server and see if the file is accessible from the othe Web Server and the NFS sever
+We can solidify this test further by creating a new file from one server and see if the file is accessible from the othe Web Server and the NFS sever. For example, lets create a file called `test.txt` on `/var/www` and confirm it on `mnt/apps` 
+
+<img width="444" alt="touch txt" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/8daf483e-472b-4b95-8426-52f12eb9f829">
+
+Confirmning from the `NFS` Server side
+
+<img width="337" alt="touch confirmd" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/fd9cb41a-6a07-4d71-a9db-b5a20bbe00c9">
+
+
+The log folder of Apache on the Web Server `/var/log/httpd` is going to be mounted on NFS Server's export logs `/mnt/logs`. 
+This will be done with the command `sudo mount -t nfs -o rw,nosuid <NFS-Server-Private-IP-Address>:/mnt/logs /var/log/httpd`
+
+<img width="723" alt="mount log   fstab" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/91d2948f-5392-412a-bf2d-4a22f8061211">
+
+Afer which we will make sure that the mount persists after reboot by editing again the file `/etc/fstab` and adding `<NFS-Server-Private-IP-Address>:/mnt/logs /var/log/httpd nfs defaults 0 0`
+
+<img width="663" alt="fstab 2" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/528fb69d-565f-4cbf-b6c9-b5d9e17de480">
+
+##### Forking Tooling Source Code
+We are going to fork a source code from a Github Account into your Github account
+We will begin this by intsalling git on the Web Server with the comand `sudo yum install git`  after which we will intialize git with the command `git init` 
+
+<img width="606" alt="git init" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/8dce7a67-d919-43b2-8289-f6385cb746ec">
+
+
+then clone the repo by copying the `HTTPS` URL code from the repo 
+
+<img width="948" alt="Darey repo" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/86017ffc-f5ed-458a-8d57-e3f65da0a660">
+
+
+and running the command `git clone <HTTPS URL>` and we will confirm this with the `ls` command
+
+<img width="610" alt="git clone + ls" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/a061ee9f-9435-4117-b63b-486f0564a06c">
+
+
+
