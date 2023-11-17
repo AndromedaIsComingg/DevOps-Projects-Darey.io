@@ -145,6 +145,7 @@ In order for NFS server to be accessible from your client, you must also open th
 <img width="1197" alt="inbound rules" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/9636ef22-afab-4da7-a6bc-62d4bdfe1927">
 
 ## Configuring a backend database as part of 3 tier architecture
+This where we will spin up another Linux instance which will be Ubuntu version 20.04
 
 ##### Installing MySQL server
 This is done with the command `sudo yum install mysql-server` 
@@ -158,10 +159,13 @@ We will create a Database and name it `tooling` and a User `webaccess` and grant
 `sudo mysql
 CREATE DATABASE tooling;
 CREATE USER `webaccess`@`172.31.16.0/20` IDENTIFIED BY 'mypass';
-GRANT ALL ON tooling.* TO ‘webaccess’@‘172.31.16.0/20';
+GRANT ALL PRIVILEGES ON tooling.* TO `webaccess`@`172.31.16.0/20`;
 FLUSH PRIVILEGES;
 SHOW DATABASES;
 exit`
+
+
+GRANT ALL ON tooling.* TO ‘webaccess’@‘172.31.16.0/20';
 
 
 <img width="523" alt="Create DB   User" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/c6556dd3-359e-43de-9847-320d413cda66">
@@ -178,7 +182,9 @@ During the next steps we will do following:
 • Deploy a Tooling application to our Web Servers into a shared NFS folder
 • Configure the Web Servers to work with a single MySQL database
 
-##### Launch a new EC2 instance with RHEL 8 Operating System
+##### Launch a new EC2 instance with RHEL 8 Operating System 
+This instance will be hosting one of our web servers
+
 ![Screen Shot 2023-11-09 at 4 19 23 PM](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/5844a1db-963f-4cc9-aacd-99603157d04c)
 
 
@@ -192,4 +198,26 @@ The install the `NFS Client` with the command `sudo yum install nfs-utils nfs4-a
 
 
 ##### Mount `/var/www/` and target the NFS server's export for app
-This is done with the following command `sudo mount -t nfs -o rw,nosuid <NFS-Server-Private-IP-Address>:/mnt/apps /var/www`
+First we wil create the directory `sudo mkdir /var/www`
+Then we will mount with the following command `sudo mount -t nfs -o rw,nosuid <NFS-Server-Private-IP-Address>:/mnt/apps /var/www`
+verify that NFS was mounted successfully using the command `df -h`
+
+
+<img width="443" alt="df -h serv1" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/458fba92-92a9-42f3-ba96-f08faae76929">
+
+
+Also, we will make sure the changes persist on the web server after reboot by editing the followinf file `sudo vi /etc/fstab` and adding the following line of code `<NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0`
+
+
+<img width="770" alt="vi fstab edit" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/310c074d-4abb-4e25-a022-b9de2d200fc6">
+
+
+##### Installing Apache
+This is done so that content can be served, it is done using the command `sudo yum install httpd -y`
+
+<img width="648" alt="install httpd" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/861e4875-cfbd-4030-b8d6-0c406557895e">
+
+
+We will repeat the same step in creating another web server and mount it accordingly.
+We will verify that Apaches files and directory are available on the Web Server `/var/www` and also confirm that same file appear on `/mnt/apps` directory of the `NFS` Server. 
+We can solidify this test further by creating a new file from one server and see if the file is accessible from the othe Web Server and the NFS sever
