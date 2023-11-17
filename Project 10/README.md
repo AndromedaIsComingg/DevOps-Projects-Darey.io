@@ -93,7 +93,7 @@ Then we start the service, enable it and check the status with the commands belo
 <img width="914" alt="NFS start enable   status" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/38ec6101-e72f-4c8c-9741-a2cd57e2d3f3">
 
 
-Export the mount for webservers' `subnet CIDR` to connect a clients. For simplicity, you will install your three Web Servers inside the same subnet, but in production set up you would probably want to seperate each tier inside its own subnet for higher level of security. To check your `subnet CIDR`, open your EC2 details in AWS web console and locate the "Networking tab and open a Subnet link, which will open a new window from where we will check the subnet and locate the `IPV4 CIDR` uder which the subnet CIDR appears as shown in the diagrams below.
+Export the mount for webservers' `subnet CIDR` to connect as clients. For simplicity, you will install your three Web Servers inside the same subnet, but in production set up you would probably want to seperate each tier inside its own subnet for higher level of security. To check your `subnet CIDR`, open your EC2 details in AWS web console and locate the "Networking" tab and open a Subnet link, which will open a new window from where we will check the subnet and locate the `IPV4 CIDR` uder which the subnet CIDR appears as shown in the diagrams below.
 
 
 <img width="1058" alt="subnet network" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/5d666aff-3481-40b4-98fd-7569f362b3bf">
@@ -184,7 +184,7 @@ We need to make sure that our Web Servers can serve the same content from shared
 
 This approach will make our Web Servers stateless , which means we will be able to add new ones or remove them whenever we need, and the integrity of the data (in the database and on NFS) will be preserved.
 During the next steps we will do following:
-• Configure NFS client (this step must be done on all three servers)
+• Configure NFS client (this step must be done on Web Servers)
 • Deploy a Tooling application to our Web Servers into a shared NFS folder
 • Configure the Web Servers to work with a single MySQL database
 
@@ -195,7 +195,6 @@ This instance will be hosting one of our web servers
 
 
 ##### Install NFS Client
-
 
 The install the `NFS Client` with the command `sudo yum install nfs-utils nfs4-acl-tools -y`
 
@@ -219,14 +218,14 @@ Also, we will make sure the changes persist on the web server after reboot by ed
 
 
 ##### Installing Apache
-This is done so that content can be served to thr end user, it is done using the command `sudo yum install httpd -y`
+This is done so that content can be served to the end user, it is done using the command `sudo yum install httpd -y`
 
 <img width="648" alt="install httpd" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/861e4875-cfbd-4030-b8d6-0c406557895e">
 
 
 We will repeat the same step in creating another web server and mount it accordingly.
 We will verify that Apaches files and directory are available on the Web Server `/var/www` and also confirm that same file appear on `/mnt/apps` directory of the `NFS` Server. 
-We can solidify this test further by creating a new file from one server and see if the file is accessible from the othe Web Server and the NFS sever. For example, lets create a file called `test.txt` on `/var/www` and confirm it on `mnt/apps` 
+We can solidify this test further by creating a new file from one server and see if the file is accessible from the other Web Server and the NFS sever. For example, lets create a file called `test.txt` on `/var/www` and confirm it on `mnt/apps` 
 
 <img width="444" alt="touch txt" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/8daf483e-472b-4b95-8426-52f12eb9f829">
 
@@ -261,7 +260,7 @@ and running the command `git clone <HTTPS URL>` and we will confirm this with th
 <img width="610" alt="git clone + ls" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/a061ee9f-9435-4117-b63b-486f0564a06c">
 
 
-We will proceed to copy the folder `html` which is a sub directory in the `tooling` folder to `/var/www/html
+We will proceed to copy the folder `html` which is a sub directory in the `tooling` folder to `/var/www/html`
 using the command `sudo cp -R html/. /var/www/html` while we already changed directory into the `tooling` folder
 
 <img width="651" alt="copy tooling" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3c5a790f-76df-406b-adce-caca7a490bf0">
@@ -302,7 +301,25 @@ using the command `sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welc
 <img width="770" alt="rename   restart httpd" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3be0fdc7-50c9-46f0-887d-a19c229bbc35">
 
 
+`show databases;
+use tooling;
+show tables;
+select * from users;`
 
+
+<img width="637" alt="TAbles" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/18facaa9-65f6-47bf-90e9-9b340f62b8ee">
+
+
+We will now log in with the credentials Username Admin and Password Admin from the web browser
+'http://Web-Server-Public-IP-Address-or-Public-DNS-Name/index.php'
+
+![home log in](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/7d8a9d1b-55f8-4671-8958-09c1a82b145e)
+
+
+![home page](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/c74354af-f01e-4bde-8dcf-26d9f357f2ef)
+
+
+---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
 
 
 
