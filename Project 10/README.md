@@ -170,6 +170,12 @@ GRANT ALL ON tooling.* TO ‘webaccess’@‘172.31.16.0/20';
 
 <img width="523" alt="Create DB   User" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/c6556dd3-359e-43de-9847-320d413cda66">
 
+We will also use a text editor to edit the following file `sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+where we will be changing the `bind-address` and `mysqlx-bind-address` to `0.0.0.0`
+and restart `MySQL` using `sudo systemctl restart mysql`
+<img width="709" alt="Bind address" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/472ce468-1449-427a-9c67-d45853900e34">
+
+
 
 
 ## Prepare the Web Servers
@@ -253,6 +259,50 @@ then clone the repo by copying the `HTTPS` URL code from the repo
 and running the command `git clone <HTTPS URL>` and we will confirm this with the `ls` command
 
 <img width="610" alt="git clone + ls" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/a061ee9f-9435-4117-b63b-486f0564a06c">
+
+
+We will proceed to copy the folder `html` which is a sub directory in the `tooling` folder to `/var/www/html
+using the command `sudo cp -R html/. /var/www/html` while we already changed directory into the `tooling` folder
+
+<img width="651" alt="copy tooling" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3c5a790f-76df-406b-adce-caca7a490bf0">
+
+please note that `port 80` has to be open on the web server's security group to allow http connections.
+
+
+Now we can test the configuration by launching the public IP of the Web Server in a Web Browser
+<img width="1228" alt="test page" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/0f3d1295-9799-4f4a-915c-3fe64f504cdf">
+
+
+If we do not get a page similar to one above, you may need to check permissions to /var/www/html folder and also disable SELinux sudo setenforce 0
+
+To make this change permanent, we will open the file `sudo vi etc/sysconfig/selinux and set SELINUX-disabled`
+
+##### Update the website's configuration to connect to the database (in function.php file). Apply tooling-db.sql script
+This will be done by editing the file `sudo vi /var/www/html/functions.php`
+
+<img width="583" alt="function PHP" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/9a20981d-ee7e-4be3-9439-3fa9acab4341">
+
+
+##### Create in MySQL a new user with username: myuser and pasword: password
+To carry this out, we need to first install MySQL Client with the command `sudo yum install mysql`
+followed by `mysql -h <PRIVATE-IP-OF-DATABASE> -u webaccess -p tooling < tooling-db.sql` which should throw no error.
+
+please note that the inbound rule for the Database server has to be set to open to MYSQL/AURORA with the subnet/CIDR of the Web Server
+
+
+<img width="1222" alt="DB inbound" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/89023efa-d8ff-4e3e-83ce-c9b2bc727888">
+
+Renaming the Default Hompage File
+This is done so that the customized tooling page can prevail. It is done from the path `/etc/httpd/conf.d/welcome.conf`
+
+
+using the command `sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.backup` after which we will restart `Apache` with the command `sudo systemctl restart httpd`
+
+
+<img width="770" alt="rename   restart httpd" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3be0fdc7-50c9-46f0-887d-a19c229bbc35">
+
+
+
 
 
 
