@@ -84,6 +84,26 @@ Add `Credentials`, Jenkins (user/password) so Jenkins could access files in the 
 
 <img width="1181" alt="Credentials" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/7ddfc615-8aed-47f4-bd63-e4d67ae464d1">
 
+## Build Test
+Saving the above configuration takes us back to the dashboard where we will use the `Build Now` option to test the congiguration
 
+
+If you see a green tick sign before #1 at the lower left side of the console, it means everything was configured correctly and the build was successfull.
+
+
+<img width="1280" alt="build 1" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/448610d8-dfc4-4640-b6b5-b0c7b1536b76">
+
+
+If you have an error which looks like `HTTP ERROR 403 No valid crumb was included in the request` 
+
+Then go back to Dasboard, Manage Jenkins, Configure Global Security, scroll down and check "enable proxy compactibility"
+
+
+## Configuring Github to trigger Build Jobs Automatically
+We will do this by selecting the job (project11) then "configure", go to the "Build Triggers" tab, this is where we will chck the option "GitHub hook trigger for GITsm polling"
+
+
+
+Move to the "Build Environment" tab
 
 
