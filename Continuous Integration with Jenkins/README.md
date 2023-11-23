@@ -100,10 +100,21 @@ Then go back to Dasboard, Manage Jenkins, Configure Global Security, scroll down
 
 
 ## Configuring Github to trigger Build Jobs Automatically
-We will do this by selecting the job (project11) then "configure", go to the "Build Triggers" tab, this is where we will chck the option "GitHub hook trigger for GITsm polling"
+We will do this by selecting the job (project11) then "configure", go to the "Build Triggers" tab, this is where we will check the option "GitHub hook trigger for GITsm polling"
+
+<img width="780" alt="build trigger" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/9c8b3eb0-9901-4761-b186-4031cbc03f0b">
 
 
 
-Move to the "Build Environment" tab
+
+##### Configure "Post-build Actions" to archive all the files - files resulted from a build are called "artifacts".
+
+Move to the "Build Environment" tab, click the "Add post-build action" dropdown and select "Archive the artifacts"
+
+
+In the "Files to archive" blank bar, fill in `**` 
+
+<img width="634" alt="files to archive" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/0622c27a-f08c-42ff-ac25-064989a8fd0b">
+
 
 
