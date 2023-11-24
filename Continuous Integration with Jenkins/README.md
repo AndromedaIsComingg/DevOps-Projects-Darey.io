@@ -117,4 +117,14 @@ In the "Files to archive" blank bar, fill in `**`
 <img width="634" alt="files to archive" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/0622c27a-f08c-42ff-ac25-064989a8fd0b">
 
 
+##### Checking if auto biuld configuration is effective
+This is done by editing any content in the GitHub repository, for this we will choose the README markdown file, where we will add a few text and check to see if it triggers an auto build in Jenkins
 
+<img width="1266" alt="editing README for trigger" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/13d8106a-c0af-47f6-a684-151871a271e3">
+
+
+<img width="700" alt="Auto build jenkins" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/233dd58c-75e9-4ffd-941e-f6c4cdaabcfb">
+
+By default, the artifacts are stored on Jenkins server locally in the directory
+
+`ls /var/lib/jenkins/jobs/<name-of-freestyle-project>/builds/<build_number>/archive/`
