@@ -1,24 +1,68 @@
 # Continuous Integration with Jenkins
 
+
+##### `Jenkins` is an open-source automation server commonly used for building, testing, and deploying software. It facilitates the continuous integration and continuous delivery (CI/CD) of code by automating the building, testing, and deployment phases of the software development lifecycle. Jenkins supports the automation of repetitive tasks, allowing development teams to focus on writing code rather than manually managing the development process.
+
+Key features of Jenkins include:
+
+- Continuous Integration: Jenkins can automatically trigger builds whenever changes are pushed to a version control repository, ensuring that code changes are regularly integrated and tested.
+
+- Extensibility: Jenkins has a large ecosystem of plugins that extend its functionality. These plugins cover a wide range of tools and technologies, making it adaptable to various development environments.
+
+- Pipeline Support: Jenkins supports the definition of continuous delivery pipelines, allowing users to define and automate the entire build, test, and deployment process.
+
+- Distributed Builds: Jenkins can distribute build and test tasks across multiple machines, which helps in parallelizing and speeding up the build process.
+
+- Integration: Jenkins can integrate with various version control systems (e.g., Git, SVN), build tools, testing frameworks, and deployment tools.
+
+Community Support: Being open-source, Jenkins has a large and active community of users and contributors. This community support includes forums, documentation, and a wealth of plugins.
+
+** Jenkins is widely used in software development and has become a standard tool for implementing CI/CD practices in many organizations. ** 
+
+In this project, we will be setting up a Jenkins server, configure a job to automatically deploy source codes changes from Git to an NFS server.
+
+
+See schematic below:
+
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/6fdc1db4-36aa-4976-bfa7-fbb1a41eeeea)
+
+
+
 ## EC2 instance
+We will provision an EC2 instance (Ubuntu 20.04 LTS)
+
+
+For knowledge of how to create an EC2 Instance and how to connect to it. For guide on this, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/Other-Projects/blob/main/Project%204/README.md)
+
+
 <img width="1252" alt="Ubuntu 20 04 LTS" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/da2f5106-b5e1-4960-b460-52a9d5a06fea">
 
-##### Ports inbound
+
+##### Enable Ports
+By default Jenkins server uses TCP port 8080 - open it by creating a new Inbound Rule in your EC2 Security Group
+
+
 <img width="1240" alt="ports" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/de57e916-7eff-4915-a3f6-82e02779d7d5">
 
-## Server update & JDK 
-sudo apt install default-jdk-headless
+##### Installing Java Development Kit (JDK)
+This is done because Jenkins is a Java-based application and it is done with the command `sudo apt install default-jdk-headless`
 
 <img width="574" alt="JDK" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/7d61195a-f528-42a3-b679-0aa49dbfba29">
 
+
 ##### Install Jenkins
-curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+
+This is done with the commands
+
+
+`curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
   https://pkg.jenkins.io/debian binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
-sudo apt-get install -y jenkins
+sudo apt-get install -y jenkins`
+
 
 <img width="688" alt="Jenkins install" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/2b41b5b4-e595-4d29-8fa0-a36c0b1e494f">
 
@@ -128,3 +172,8 @@ This is done by editing any content in the GitHub repository, for this we will c
 By default, the artifacts are stored on Jenkins server locally in the directory
 
 `ls /var/lib/jenkins/jobs/<name-of-freestyle-project>/builds/<build_number>/archive/`
+
+
+
+---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
+
