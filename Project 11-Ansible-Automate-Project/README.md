@@ -5,7 +5,7 @@
 ## Install and Configure Ansible on an EC2 Instance
 For this project, this will be done on an existing `Ubuntu` instance (ubuntu 20.04 LTS)
 
-(<img width="1252" alt="Ubuntu 20 04 LTS" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/61e2702d-b862-411c-97c5-6761d2312f83">
+<img width="1252" alt="Ubuntu 20 04 LTS" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/61e2702d-b862-411c-97c5-6761d2312f83">
 
 This is the same jenkins server in the jenkins guide above, but for this purpose we will only modify the instance name to `Jenkins-Ansible` 
 
