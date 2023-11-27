@@ -126,7 +126,32 @@ This is confirmed by checking the following path `sudo ls /var/lib/jenkins/jobs/
 <img width="698" alt="terminal change confirmatn" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/f243f2e9-eeb6-459b-8df7-b69e73e41ff5">
 
 
+Since setup is okay, this is the blueprint of our setup
+
+<img width="973" alt="Schematic" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/e6354214-d4bf-41ff-b945-72acef6d5b23">
 
 
+Please note that every time you stop/start your Jenkins-Ansible server - you have to reconfigure GitHub webhook to a new IP address, in order to avoid it, it makes sense to allocate an Elastic IP to your Jenkins-Ansible server. Also note that Elastic IP is free only when it is being allocated to an EC2 Instance, so do not forget to release Elastic IP once you terminate your EC2 Instance.
+
+
+## Preparing your development environment (IDE)
+
+For this project, we will be using Visual Code Studio, you can get it [here](https://code.visualstudio.com/download)
+
+
+After you have successfully installed VSC, configure it to connect to your newly created GitHub repository. For guide on how to do this, please check my earlier documentation [here](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/tree/main/Project%202-Git-Project)
+
+
+##### Installing "Remote Development" Extension
+This is an extension pack that lets you open any folder in a container, on a remote machine, or in WSL and take advantage of VS Code's full feature set.
+
+
+<img width="1133" alt="Remote development" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/7fb45e2c-fe9e-4c17-8655-f9fc23124464">
+
+
+<img width="1279" alt="VSCode opened" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/e627e814-d665-4e1e-b620-81388c336cf9">
+
+##### Creating a new branch and checking out into it
+For this, we will be creating a new branch called "ansible-jen", using the command `git checkout -b ansible-jen`
 
 
