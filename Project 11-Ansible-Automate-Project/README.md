@@ -174,9 +174,11 @@ For this, we will be creating a new branch called "ansible-jen", using the comma
 
 
 Note: Ansible uses TCP port 22 by default, which means it needs to ssh into target servers  from Jenkins-Ansible host - for this you can implement the concept of ssh-agent. Now you need to import your key into ssh-agent using: 
+```
+eval `ssh-agent -s`
+ssh-add <path-to-private-key>
+```
 
-`eval `ssh-agent -s``
-`ssh-add <path-to-private-key>`
 
 <img width="390" alt="ssh add" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/988cce01-9b60-4ccd-8a12-6357b34f3f64">
 
@@ -190,8 +192,91 @@ Note: Ansible uses TCP port 22 by default, which means it needs to ssh into targ
 
  This means that the Ansible Server will be able to access all other instances we will be creating with the same .pem keypair
 
- 
 
+ Snapshot of other instances fro this project using the same key pair is below
+The instances include `NFS,` `db`, `webserver 1 & 2`, and `lb` 
+
+<img width="1109" alt="snapshot instances" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/50ca0bee-f8a3-45da-b125-e2269a13c758">
+
+
+##### Update your inventory/dev.yml file with this snippet of code:
+
+```
+[nfs]
+<NFS-Server-Private-IP-Address> ansible_ssh_user=ec2-user
+
+[webservers]
+<Web-Server1-Private-IP-Address> ansible_ssh_user=ec2-user
+<Web-Server2-Private-IP-Address> ansible_ssh_user=ec2-user
+
+[db]
+<Database-Private-IP-Address> ansible_ssh_user=ec2-user 
+
+[lb]
+<Load-Balancer-Private-IP-Address> ansible_ssh_user=ubuntu
+```
+
+<img width="704" alt="dev edit" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/6840bbb7-8ef3-4b36-b945-0de81efb8bf3">
+
+
+Also notice, that your Load Balancer user is ubuntu and user for RHEL-based servers is ec2-user.
+
+
+##### Create a Common Playbook
+It is time to start giving Ansible the instructions on what you need to be performed on all servers listed in `inventory/dev`
+In `common.yml` playbook you will write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
+Update your `playbooks/common.yml` file with following code:
+
+```
+---
+- name: update web, nfs and db servers
+  hosts: webservers, nfs, db
+  become: yes
+  tasks:
+    - name: ensure wireshark is at the latest version
+      yum:
+        name: wireshark
+        state: latest
+   
+
+- name: update LB server
+  hosts: lb
+  become: yes
+  tasks:
+    - name: Update apt repo
+      apt: 
+        update_cache: yes
+
+    - name: ensure wireshark is at the latest version
+      apt:
+        name: wireshark
+        state: latest
+```
+
+##### Update GIT with the latest code
+Now all of your directories and files live on your machine and you need to push changes made locally to GitHub.
+This is done by using the git add and commit commands `git add .` to add all files with changes, and `git commit -m "<commit message>"` to commit new changes
+
+<img width="865" alt="git commit" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/f33f56fb-de53-4672-980f-492e65add1b0">
+
+##### Push Changes and Create a Pull Request
+This is done with the command `git push origin <branch-name>`. This push will automatically create a pull request in the GitHub remote remote repository
+
+<img width="737" alt="git push" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/76c301a0-8e71-4169-8fd7-2c18440287cd">
+
+
+
+We will receive a prompt to compare and pull, afterwhich we will click om "Create pull request", the proceed to "Merge pull request", then "Confirm merge"
+
+
+<img width="952" alt="compare   pull" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/a9f7a8be-70c6-412e-8139-cf8b1de7fa5c">
+
+
+
+<img width="902" alt="create pull" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/84326b2f-778d-4c17-94a1-1474475e8564">
+
+
+<img width="942" alt="Merge pull" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/48ab1d9e-b948-4047-86f2-d6ef437c1f47">
 
 
 
