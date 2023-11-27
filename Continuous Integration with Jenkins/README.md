@@ -137,6 +137,11 @@ If you see a green tick sign before #1 at the lower left side of the console, it
 <img width="1280" alt="build 1" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/448610d8-dfc4-4640-b6b5-b0c7b1536b76">
 
 
+Please not that if you have a failed biuld you may need to go back to `configuration` and change "Branch Specifier" from `master` to `main` or any corresponding name of branch.
+
+<img width="1218" alt="Branch Specifier" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/c22edfdc-640c-43f2-a1f6-2b313f8b5328">
+
+
 If you have an error which looks like `HTTP ERROR 403 No valid crumb was included in the request` 
 
 Then go back to Dasboard, Manage Jenkins, Configure Global Security, scroll down and check "enable proxy compactibility"
