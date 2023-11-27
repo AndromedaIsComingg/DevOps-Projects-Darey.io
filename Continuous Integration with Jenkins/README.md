@@ -99,7 +99,7 @@ Fill in blanks accordingly
 <img width="759" alt="Jenkins is ready" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/fdd104e9-61c7-413c-965d-4444541ef8f8">
 
 
-## Cinfiguring Jenkins to retrieve source codes from Github using Webhooks
+## Configuring Jenkins to retrieve source codes from Github using Webhooks
 In this part, we willl configure a simple Jenkins job/project. This job will be triggered by GitHub Webhook and will execute a `build` task to retrieve codes from Github and store it locally on Jenkins Server.
 
 ##### Enable Webhook 
