@@ -154,4 +154,46 @@ This is an extension pack that lets you open any folder in a container, on a rem
 ##### Creating a new branch and checking out into it
 For this, we will be creating a new branch called "ansible-jen", using the command `git checkout -b ansible-jen`
 
+<img width="1254" alt="Checkout ansible-jen" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/f5b0655d-bb91-4f5b-a3fc-e2b1dd2b8bd1">
+
+
+##### Creating  Directories
+
+- Create a directory and name it playbooks - it will be used to store all your playbook files.
+- Create a directory and name it `inventory` - it will be used to keep your hosts organised.
+
+<img width="858" alt="mkdir playbook inventory" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/48ab71a4-e146-4eaa-8be5-848528178508">
+
+##### Creating files
+
+- Within the playbooks folder, create your first playbook, and name it common.yml
+- Within the inventory folder, create an inventory file for each environment (Development, Staging Testing and Production) dev, staging, uat, and prod respectively. These inventory files use .ini languages style to configure Ansible hosts.
+
+
+<img width="859" alt="creating files" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/42b32455-1ed6-491a-bd40-f977b8e28104">
+
+
+Note: Ansible uses TCP port 22 by default, which means it needs to ssh into target servers  from Jenkins-Ansible host - for this you can implement the concept of ssh-agent. Now you need to import your key into ssh-agent using: 
+
+`eval `ssh-agent -s``
+`ssh-add <path-to-private-key>`
+
+<img width="390" alt="ssh add" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/988cce01-9b60-4ccd-8a12-6357b34f3f64">
+
+
+ Now instead of logging in into the EC2 instance with the  identity file, we will be logging in using the SSH Agent with the command 
+ `ssh -A ubuntu@<Public-IP>`, then persist the key on the server using `ssh-add -l`
+
+
+<img width="553" alt="ssh agent" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/07aae317-e531-42ee-adc5-9dedfd856cfc">
+
+
+ This means that the Ansible Server will be able to access all other instances we will be creating with the same .pem keypair
+
+ 
+
+
+
+
+
 
