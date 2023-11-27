@@ -280,5 +280,19 @@ We will receive a prompt to compare and pull, afterwhich we will click om "Creat
 
 
 
+<img width="877" alt="Merge confirm" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/5aa99487-5714-4e63-a74c-3031d679188c">
+
+
+
+##### Checking branch `main` to confirm that files and folders have been updated
+
+<img width="703" alt="Main updated" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/761584bb-b407-4272-859c-99883538c752">
+
+
+Also, we will confirm that the changes in the Github repository has trigger a build in the Jenkins console
+
+<img width="729" alt="jenkins trigger 2" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/467dcd50-f7f6-4e37-a3ef-350e0e8cacf5">
+
+
 
 
