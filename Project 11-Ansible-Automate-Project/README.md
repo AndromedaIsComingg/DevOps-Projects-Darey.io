@@ -340,6 +340,13 @@ Host jenkins-ansible
 
 <img width="635" alt="host config" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/b18b64bc-0e37-4adb-a20c-1c1b931cf846">
 
+Now we have a remote login from VS code of our `Jenkins-Ansible` instance
+
+<img width="910" alt="remote login" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/ebab06e9-63a2-4c0b-ab54-b5e52ab08f3f">
+
+
 
 Now run your playbook using the command:
+
+
 
