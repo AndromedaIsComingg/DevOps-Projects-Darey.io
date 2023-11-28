@@ -259,7 +259,12 @@ This is done by using the git add and commit commands `git add .` to add all fil
 
 <img width="865" alt="git commit" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/f33f56fb-de53-4672-980f-492e65add1b0">
 
+
+Please note that the above `add` and `commit` was carried out in the created branch `ansible-jen`
+
 ##### Push Changes and Create a Pull Request
+
+
 This is done with the command `git push origin <branch-name>`. This push will automatically create a pull request in the GitHub remote remote repository
 
 <img width="737" alt="git push" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/76c301a0-8e71-4169-8fd7-2c18440287cd">
@@ -285,14 +290,56 @@ We will receive a prompt to compare and pull, afterwhich we will click om "Creat
 
 
 ##### Checking branch `main` to confirm that files and folders have been updated
+Once the push is succesfull, we expect to have the files in the Github repository updated as such
 
 <img width="703" alt="Main updated" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/761584bb-b407-4272-859c-99883538c752">
 
 
-Also, we will confirm that the changes in the Github repository has trigger a build in the Jenkins console
+We should also confirm that the changes in the Github repository has trigger a build in the Jenkins console
 
 <img width="729" alt="jenkins trigger 2" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/467dcd50-f7f6-4e37-a3ef-350e0e8cacf5">
 
 
+We can proceed to check the update out in the following jenkins directory on the Jenkins-Ansible Server
 
+`/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/`
+
+<img width="605" alt="ls build 4" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/71e45b55-bcd6-4d1c-8a10-1389dabf4d47">
+
+
+##### Updating the branch `main` locally
+Since the `add` and `commit` we performed earlier was on the `ansible-jen` branch, we will switch into the main branch with the command `git checkout main` and check the status with the command `git status` and update the branch with a pull command `git pull.
+
+<img width="736" alt="main branch update" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/93563083-22a8-41ab-95ea-1ad746085916">
+
+
+## Run first Ansible test
+Now, it is time to execute ansible-playbook command and verify if your playbook actually works:
+
+##### Setup your VSCode to connect to your instance
+This where we use the `Remote Development` extension installed earlier
+
+
+Connect to host, Add new ssh
+
+<img width="833" alt="ssh config" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/a1f8a735-b9ff-4565-9f36-c6d233aa6cc2">
+
+update the configuration as below
+
+```
+Host jenkins-ansible
+  HostName <public IP>
+  User ubuntu
+  IdentityFile <path-to-keypair>
+  ForwardAgent yes
+  ControlPath /tmp/ansible-ssh-%h-%p-%r
+  ControlMaster auto
+  ControlPersist 10m
+```
+
+
+<img width="635" alt="host config" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/b18b64bc-0e37-4adb-a20c-1c1b931cf846">
+
+
+Now run your playbook using the command:
 
