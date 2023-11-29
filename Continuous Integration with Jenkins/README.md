@@ -160,7 +160,8 @@ We will do this by selecting the job (project11) then "configure", go to the "Bu
 Move to the "Build Environment" tab, click the "Add post-build action" dropdown and select "Archive the artifacts"
 
 
-In the "Files to archive" blank bar, fill in `**` 
+In the "Files to archive" blank bar, fill in `**` (** saves all the file). if you want jenkins apply some particular pattern to define which files to archive, you can learn the syntax [here](https://ant.apache.org/manual/dirtasks.html#patterns)
+
 
 <img width="634" alt="files to archive" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/0622c27a-f08c-42ff-ac25-064989a8fd0b">
 
