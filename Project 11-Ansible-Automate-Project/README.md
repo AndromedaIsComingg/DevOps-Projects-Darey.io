@@ -13,7 +13,7 @@ For this project execution, the following components will be required.
 4. Database Sever - Linux RedHat Enterprise
 5. Storage Server - Linux RedHat Enterprise
 6. Load Balancer Server - Ubuntu
-7. Programming Language - PHP
+7. Declarative Language - YAML
 8. Code Repository - GitHub
 9. Stable network connection
 10. Access to the terminal
