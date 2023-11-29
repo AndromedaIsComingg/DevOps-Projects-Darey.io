@@ -409,10 +409,12 @@ and on our load balancer, `lb` (an ubuntu instance)
 <img width="682" alt="wireshark lb ubuntu" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/690119e7-2b91-46b9-8cf9-38aaed9a72cb">
 
 
-##### This shows a successful `Ansible` Automation configuration alongside a `Jenkins` continous integration system
+##### This shows a successful `Ansible` Automation configuration alongside `Jenkins` facilitating continuous integration, and continuous delivery.
 
 
-The overall Ansible setup looks like the diagram below
+
+
+The overall Automation setup looks like the diagram below
 
 <img width="908" alt="Ansible updatd schematic" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/94bcfcbd-f911-4037-b9eb-ff1c5b683dfe">
 
