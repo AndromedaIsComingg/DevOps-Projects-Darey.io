@@ -205,6 +205,7 @@ eval `ssh-agent -s`
 ssh-add <path-to-private-key>
 ```
 
+Please note that the above commands MUST be ran locally from any every command line interface before proceeding with logging in with the login method instructed below as an SSH-Agent, sometimes on the same CLI, one will need to run these command on every individual tab where one wants to have access as an SSH agent. 
 
 <img width="390" alt="ssh add" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/988cce01-9b60-4ccd-8a12-6357b34f3f64">
 
@@ -216,10 +217,10 @@ ssh-add <path-to-private-key>
 <img width="553" alt="ssh agent" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/07aae317-e531-42ee-adc5-9dedfd856cfc">
 
 
- This means that the Ansible Server will be able to access all other instances we will be creating with the same .pem keypair
+ This means that the Ansible Server will be able to access all other instances we will be creating with the same .pem keypair (watch out for this proccess later on when we will be confirming `Ansible` installations of `wireshark` on other servers from the "Jenkins_Ansible" Server.
 
 
- Snapshot of other instances fro this project using the same key pair is below
+ Snapshot of other instances for this project using the same key pair is below
 The instances include `NFS,` `db`, `webserver 1 & 2`, and `lb` 
 
 <img width="1109" alt="snapshot instances" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/50ca0bee-f8a3-45da-b125-e2269a13c758">
@@ -287,6 +288,10 @@ Update your `playbooks/common.yml` file with following code:
 
 ```
 
+<img width="844" alt="common" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/996425f3-9b57-4e0e-8168-47117c6c7bee">
+
+
+
 ##### Update GIT with the latest code
 Now all of your directories and files live on your machine and you need to push changes made locally to GitHub.
 This is done by using the git add and commit commands `git add .` to add all files with changes, and `git commit -m "<commit message>"` to commit new changes
@@ -342,7 +347,7 @@ We can proceed to check the update out in the following jenkins directory on the
 
 
 ##### Updating the branch `main` locally
-Since the `add` and `commit` we performed earlier was on the `ansible-jen` branch, we will switch into the main branch with the command `git checkout main` and check the status with the command `git status` and update the branch with a pull command `git pull.
+Since the `add` and `commit` we performed earlier was on the `ansible-jen` branch, we will switch into the main branch with the command `git checkout main` and check the status with the command `git status` and update the branch with a pull command `git pull`.
 
 <img width="736" alt="main branch update" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/93563083-22a8-41ab-95ea-1ad746085916">
 
