@@ -1,8 +1,34 @@
 # Ansible-Automate Project
 
+`Ansible` is an open source community project sponsored by Red Hat, it's the simplest way to automate IT, the suite includes software provisioning, configuration management, and application deployment functionality.
+
+While `Jenkins` is an open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration, and continuous delivery. 
 
 
-## Install and Configure Ansible on an EC2 Instance
+##### Reqiurements
+For this project execution, the following components will be required.
+1. Infrastructure - AWS
+2. Jenkins-Ansible Server - Ubuntu
+3. Webservers - 2 Linux RedHat Enterprise
+4. Database Sever - Linux RedHat Enterprise
+5. Storage Server - Linux RedHat Enterprise
+6. Load Balancer Server - Ubuntu
+7. Programming Language - PHP
+8. Code Repository - GitHub
+9. Stable network connection
+10. Access to the terminal
+11. VS Code + Remote Development Etension
+12. A user account with sudo privileges
+13. A Laptop or PC to serve as a client
+
+
+##### Prerequisites
+- Knowledge of how to create an EC2 Instance and how to connect to it. For guide on this, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/Other-Projects/blob/main/Project%204/README.md)
+- Understanding of basic Unix command knowledge. For guide on this, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/Other-Projects/blob/main/Project%201-Linux_Pracice_Project/README.md)
+- How to setup a continous Integration system with Jenkins. For guide on this, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/blob/main/Continuous%20Integration%20with%20Jenkins/README.md)
+
+
+## Installing and Configuring Ansible on an EC2 Instance
 For this project, this will be done on an existing `Ubuntu` instance (ubuntu 20.04 LTS)
 
 <img width="1252" alt="Ubuntu 20 04 LTS" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/61e2702d-b862-411c-97c5-6761d2312f83">
@@ -229,9 +255,12 @@ Update your `playbooks/common.yml` file with following code:
 
 ```
 ---
+---
 - name: update web, nfs and db servers
   hosts: webservers, nfs, db
+  remote_user: ec2-user
   become: yes
+  become_user: root
   tasks:
     - name: ensure wireshark is at the latest version
       yum:
@@ -239,9 +268,13 @@ Update your `playbooks/common.yml` file with following code:
         state: latest
    
 
+# -----------------------------------------------------------
+
 - name: update LB server
   hosts: lb
+  remote_user: ubuntu
   become: yes
+  become_user: root
   tasks:
     - name: Update apt repo
       apt: 
@@ -251,6 +284,7 @@ Update your `playbooks/common.yml` file with following code:
       apt:
         name: wireshark
         state: latest
+
 ```
 
 ##### Update GIT with the latest code
@@ -340,13 +374,47 @@ Host jenkins-ansible
 
 <img width="635" alt="host config" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/b18b64bc-0e37-4adb-a20c-1c1b931cf846">
 
-Now we have a remote login from VS code of our `Jenkins-Ansible` instance
-
-<img width="910" alt="remote login" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/ebab06e9-63a2-4c0b-ab54-b5e52ab08f3f">
+Now we have a remote login from VS code of our `Jenkins-Ansible` instance, from where we will access the ubuntu user files from the home directory `/home/ubuntu/`
 
 
+<img width="831" alt="home dir" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/09da2da8-56ec-4ec2-8657-74dd5f86ac24">
 
-Now run your playbook using the command:
+
+##### Now run your playbook using the command:
+`ansible-playbook -i /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/inventory/dev.yml /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/playbooks/common.yml`
+
+
+Please note that all SSH Agent commands has to be ran on the "Remote Development" extension new window (locally) as a new agent 
+
+
+<img width="956" alt="wireshark install" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/61830854-676e-4241-8e8c-7c0a876b3583">
+
+
+##### Confirming Installations
+We can now login into the servers to check if "wireshark" have been installed on the servers using the command `which wireshark` or `wireshark --version`
+
+
+let's check on `webserver-1` (a RedHat instance)
+
+<img width="759" alt="wireshark on web1 redhat" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/ab27290f-fc96-48d8-8e21-a94bf8d77732">
+
+
+and on our load balancer, `lb` (an ubuntu instance)
+
+<img width="682" alt="wireshark lb ubuntu" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/690119e7-2b91-46b9-8cf9-38aaed9a72cb">
+
+
+##### This shows a successful `Ansible` Automation configuration alongside a `Jenkins` continous integration system
+
+
+The overall Ansible setup looks like the diagram below
+
+<img width="908" alt="Ansible updatd schematic" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/94bcfcbd-f911-4037-b9eb-ff1c5b683dfe">
+
+
+
+---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
+
 
 
 
