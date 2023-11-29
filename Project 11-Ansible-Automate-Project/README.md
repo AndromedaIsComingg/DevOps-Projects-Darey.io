@@ -82,7 +82,7 @@ Fill the `Paylaod URL` with `<jenkins-URL+port>/github-webhook/`, select "Conten
 To do this, we will:
 - Create a new Freestyle project `ansible` in Jenkins and point it to your 'ansible-config-mgt' repository.
 - Configure a webhook in GitHub and set the webhook to trigger ansible build.
-- Configure a Post-build job to save all (`**`) files, as explained in my ansible guide documentation.
+- Configure a Post-build job to save all files.
 
 <img width="1163" alt="Freestyle" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/96b14410-469f-4472-b1b0-72bc5c87cbed">
 
@@ -127,7 +127,7 @@ Configure "Post-build Actions" to archive all the files - files resulted from a 
 
 Move to the "Build Environment" tab, click the "Add post-build action" dropdown and select "Archive the artifacts"
 
-In the "Files to archive" blank bar, fill in `**`
+In the "Files to archive" blank bar, fill in `**` (** saves all the file). if you want jenkins apply some particular pattern to define which files to archive, you can learn the syntax [here](https://ant.apache.org/manual/dirtasks.html#patterns)
 
 <img width="878" alt="Archive artifacts" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/834b7342-68b1-4f65-9b12-e89187a69294">
 
