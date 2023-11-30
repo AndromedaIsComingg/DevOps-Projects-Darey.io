@@ -310,7 +310,7 @@ This is done with the command `git push origin <branch-name>`. This push will au
 
 
 
-We will receive a prompt to compare and pull, afterwhich we will click om "Create pull request", the proceed to "Merge pull request", then "Confirm merge"
+We will receive a prompt to compare and pull, afterwhich we will click on "Create pull request", the proceed to "Merge pull request", then "Confirm merge"
 
 
 <img width="952" alt="compare   pull" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/a9f7a8be-70c6-412e-8139-cf8b1de7fa5c">
