@@ -83,7 +83,7 @@ These files will be founds the the directory `/home/ubuntu/ansible-config-artifa
 Now our Jenkins pipeline is more neat and clean!!!
 
 
-## Refactor Ansible code by importing other playbooks into `site.yml`
+## Refactor Ansible code by importing other playbooks
 
 Let see code re-use in action by importing other playbooks.
 
@@ -95,6 +95,180 @@ This will be done with the command `git checkout -b refactor`
 
 
 <img width="799" alt="refactor" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/b1c82241-bf2f-43c5-82e2-40f522e82f8c">
+
+
+##### Creating Files and Folders
+
+Within playbooks folder, create a new file and name it `site.yml` - This file will now be considered as an entry point into the entire infrastructure configuration. Other playbooks will be included here as a reference. In other words, site.yml will become a parent to all other playbooks that will be developed. Including `common.yml` that you created previously.
+
+
+This is done with the command `touch playbooks/site.yml`
+
+
+
+Create a new folder in root of the repository and name it `static-assignments`. This folder is where all other children playbooks will be stored. This is merely for easy organization of your work. It is not an Ansible specific concept, therefore you can choose how you want to organize your work. This will be done with the command `mkdir static-assignments`
+
+
+After this folder is created, we will move our existing `common.yml` file into the newly created `static-assignments` folder. This will be done with the command `mv playbooks/common.yml static-assignments`
+
+
+<img width="825" alt="create file and foldrs" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/ddeadd95-6beb-4bac-a34f-1b98b689829b">
+
+
+Inside the `site.yml` file, import `common.yml` playbook
+
+
+Use the code below inside the `site.yml` file
+
+```
+---
+- hosts: all
+- import_playbook: ../static-assignments/common.yml
+```
+
+The code above uses built in `import_playbook` Ansible module.
+
+<img width="833" alt="site yml code" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/6f591b29-50a2-4993-bc76-de27aa877d2f">
+
+
+Our overall folder structure in the root of the repository should look like this
+
+
+├── static-assignments
+│   └── common.yml
+├── inventory
+    └── dev
+    └── stage
+    └── uat
+    └── prod
+└── playbooks
+    └── site.yml
+
+##### Run ansible-playbook command against the dev environment
+
+Since we need to apply some tasks to your dev servers and wireshark is already installed, we can go ahead and create another playbook under static-assignments and name it `common-del.yml`. In this playbook, we will configure deletion of wireshark utility with the following code, and the file will be created with the command `touch static-assignments/common-del.yml`
+
+
+```
+---
+- name: update web, nfs and db servers
+  hosts: webservers, nfs, db
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+  tasks:
+  - name: delete wireshark
+    yum:
+      name: wireshark
+      state: removed
+
+# --------------------------------------------------------
+
+- name: update LB server
+  hosts: lb
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  tasks:
+  - name: delete wireshark
+    apt:
+      name: wireshark-qt
+      state: absent
+      autoremove: yes
+      purge: yes
+      autoclean: yes
+```
+
+
+<img width="871" alt="common-del" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/de125321-e866-411c-86a0-daaac933158e">
+
+
+
+##### update `site.yml`
+The file will be updated with the code below since we have a new playbook to run
+`- import_playbook: ../static-assignments/common-del.yml` instead of `common.yml` and run it against dev servers:
+
+
+##### Update GIT with the latest code
+
+Now all of your directories and files live on your machine and you need to push changes made locally to GitHub. This is done by using the git add and commit commands git add . to add all files with changes, and git commit -m "<commit message>" to commit new changes
+
+
+For more detailed guide on how this works. please visit my ealier documentation [here](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/blob/main/Project%2011-Ansible-Automate-Project/README.md)
+
+
+<img width="881" alt="git add commit" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/86415cd1-284e-499b-b810-b49251215525">
+
+
+Please note that the above add and commit was carried out in the created branch `refactor`
+
+##### Push Changes and Create a Pull Request
+
+This is done with the command git push origin <branch-name>. This push will automatically create a pull request in the GitHub remote remote repository
+
+
+<img width="904" alt="git push refactor" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/b507d554-688c-447e-a888-a74ba5f5cd95">
+
+
+We will receive a prompt to compare and pull, afterwhich we will click on "Create pull request", the proceed to "Merge pull request", then "Confirm merge"
+
+
+<img width="1275" alt="pull req compare" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/866f4714-c6b5-4580-9fd8-556964fe5478">
+
+
+
+
+##### Checking branch main to confirm that files and folders have been updated
+
+Once the push is succesfull, we expect to have the files in the Github repository updated as such
+
+
+We should also confirm that the changes in the Github repository has trigger a build in the Jenkins console
+
+
+<img width="752" alt="build merge" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/7edf531a-7d61-4dde-951f-5cad0b859a1e">
+
+
+A copy also has been made in the `save_artifacts` job as the build was also triggered
+
+
+<img width="736" alt="save art build merg" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/107dae29-a2eb-4d34-a609-34eb8e276d0b">
+
+
+We can proceed to check the update out in the following jenkins directory on the Jenkins-Ansible Server
+
+`/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` and `/home/ubuntu/ansible-config-artifact`
+
+
+<img width="503" alt="files check" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/5f1ab14d-d5d5-4bc1-8cda-3bf89de6ca45">
+
+
+
+
+
+
+
+
+
+
+cd /home/ubuntu/ansible-config-artifact
+
+/home/ubuntu/ansible-config-artifact/inventory/dev.yml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
