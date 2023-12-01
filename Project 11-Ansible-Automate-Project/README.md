@@ -256,7 +256,6 @@ Update your `playbooks/common.yml` file with following code:
 
 ```
 ---
----
 - name: update web, nfs and db servers
   hosts: webservers, nfs, db
   remote_user: ec2-user
