@@ -245,8 +245,12 @@ We can proceed to check the update out in the following jenkins directory on the
 
 
 
+Now we are are good to run our playbook!!!
 
 
+We will be runnning it from our preferred IDE, `VS Code`, using the `Remote Development` extension.
+
+For guide on how to use and get these, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/blob/main/Project%2011-Ansible-Automate-Project/README.md)
 
 
 
@@ -257,12 +261,7 @@ cd /home/ubuntu/ansible-config-artifact
 
 
 
-
-
-
-
-
-
+ 
 
 
 
