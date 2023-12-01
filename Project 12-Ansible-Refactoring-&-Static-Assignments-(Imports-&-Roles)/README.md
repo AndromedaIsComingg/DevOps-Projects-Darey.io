@@ -280,6 +280,10 @@ We have our nice and clean dev environment, so let us put it aside and configure
 
 - Launch 2 fresh EC2 instances using RHEL 8 image, we will use them as our uat servers, so give them names accordingly - `Web1-UAT` and `Web2-UAT`.
 
+
+<img width="758" alt="web-UAT instances" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/2eb1f042-5fea-4ca0-b8b2-b659292acf33">
+
+
 - To create a role, you must create a directory called roles/. We will create it locally in our existing `ansible-config-mgt/` directory.
 
 - Create the following folder/files structure
@@ -298,15 +302,43 @@ We have our nice and clean dev environment, so let us put it aside and configure
     └── templates
 
 
+<img width="978" alt="folder structure" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/f87f15aa-4a93-495a-868c-3fe3b3a762b1">
+
+
+##### Updating Inventory
+
+Update the inventory ansible-config-mgt/inventory/uat.yml file with IP addresses of your 2 UAT Web servers
+
+
+```
+[uat-webservers]
+<Web1-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
+<Web2-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
+``` 
+
+
+<img width="575" alt="UAT priv IP" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/db085db0-54df-4607-8e10-cb250e057d63">
+
+
+##### Editing Ansible configuration file
+In /etc/ansible/ansible.cfg file, we will uncomment `roles_path` string and provide a full path to our roles directory `roles_path` = `/home/ubuntu/ansible-config-artifactg/roles` so Ansible could know where to find configured roles.
+
+
+This will be done with a text editor such as `vi` text editor using the command `sudo vi /etc/ansible/ansible.cfg`
+
+
+For guide on how to use the vi text editor click [here] (https://www.tutorialspoint.com/unix/unix-vi-editor.htm)
+
+
+<img width="794" alt="roles_path" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3c13b465-3c8f-4568-86ae-bc95bc5ba11e">
 
 
 
 
 
+sudo vi /etc/ansible/ansible.cfg 
 
-
-
-
+/home/ubuntu/ansible-config-artifactg/roles
 
 
 
