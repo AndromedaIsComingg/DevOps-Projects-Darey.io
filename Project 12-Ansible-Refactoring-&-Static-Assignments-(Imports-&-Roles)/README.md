@@ -254,8 +254,18 @@ For guide on how to use and get these, please visit my earlier documentation [he
 
 
 
+To run our newly created `common-del.yml` file against the dev servers in the `dev.yml` file, we will first change directory into the path below with the command
 
-cd /home/ubuntu/ansible-config-artifact
+
+`cd /home/ubuntu/ansible-config-artifact`
+
+
+and initialize the two files (remember that `common-del.yml` is the file carrying the code for the deletions, but we only instructed `site.yml` file to import `common-del.yml` files and hence, the instructions in it)
+
+
+ansible-playbook -i inventory/dev.yml playbooks/site.yml
+
+
 
 /home/ubuntu/ansible-config-artifact/inventory/dev.yml
 
