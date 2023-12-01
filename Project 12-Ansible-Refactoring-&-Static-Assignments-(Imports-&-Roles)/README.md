@@ -151,32 +151,28 @@ Since we need to apply some tasks to your dev servers and wireshark is already i
 
 ```
 ---
-- name: update web, nfs and db servers
+- name: remove wireshark (yum)
   hosts: webservers, nfs, db
-  remote_user: ec2-user
   become: yes
-  become_user: root
   tasks:
-  - name: delete wireshark
-    yum:
-      name: wireshark
-      state: removed
+    - name: remove wireshark
+      yum:
+        name: wireshark
+        state: removed
 
-# --------------------------------------------------------
-
-- name: update LB server
+- name: update LB server (apt)
   hosts: lb
   remote_user: ubuntu
   become: yes
   become_user: root
   tasks:
-  - name: delete wireshark
-    apt:
-      name: wireshark-qt
-      state: absent
-      autoremove: yes
-      purge: yes
-      autoclean: yes
+    - name: delete wireshark
+      apt:
+        name: wireshark-qt
+        state: absent
+        autoremove: yes
+        purge: yes
+        autoclean: yes
 ```
 
 
@@ -264,6 +260,28 @@ and initialize the two files (remember that `common-del.yml` is the file carryin
 
 
 ansible-playbook -i inventory/dev.yml playbooks/site.yml
+
+
+<img width="863" alt="play book rem wireshark" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/e12caae4-e4c9-4657-96be-89d3af21ba16">
+
+
+We can now run the command `which wireshark` or `wireshark --version` on the dev servers to confirm that wireshark has been removed (remember that we can access any of the dev servers from our `Jenkins-Ansible` instance with the SSH agent privileges using 
+
+
+`ssh ubuntu@<public-IP>` (for ubuntu instance) and `ssh ec2-user@<Public-IP>` (for RedHat instance)
+
+
+<img width="562" alt="wireshark not found" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3d800e0f-d739-42bc-ba58-41a4d35288e0">
+
+
+
+
+
+
+
+
+
+
 
 
 
