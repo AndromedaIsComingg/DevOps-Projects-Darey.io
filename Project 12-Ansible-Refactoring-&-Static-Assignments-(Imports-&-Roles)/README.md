@@ -274,6 +274,31 @@ We can now run the command `which wireshark` or `wireshark --version` on the dev
 <img width="562" alt="wireshark not found" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3d800e0f-d739-42bc-ba58-41a4d35288e0">
 
 
+## Configure UAT Webservers with a role 'Webserver'
+
+We have our nice and clean dev environment, so let us put it aside and configure 2 new Web Servers as uat. We could write tasks to configure Web Servers in the same playbook, but it would be too messy, instead, we will use a dedicated role to make our configuration reusable.
+
+- Launch 2 fresh EC2 instances using RHEL 8 image, we will use them as our uat servers, so give them names accordingly - `Web1-UAT` and `Web2-UAT`.
+
+- To create a role, you must create a directory called roles/. We will create it locally in our existing `ansible-config-mgt/` directory.
+
+- Create the following folder/files structure
+
+
+└── webserver
+    ├── README.md
+    ├── defaults
+    │   └── main.yml
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── tasks
+    │   └── main.yml
+    └── templates
+
+
+
 
 
 
