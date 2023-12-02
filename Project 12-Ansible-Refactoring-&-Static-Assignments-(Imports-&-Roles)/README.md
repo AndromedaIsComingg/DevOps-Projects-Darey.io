@@ -1,9 +1,39 @@
 # Ansible Refactoring & Static Assignments (Imports and Roles)
 
+`Ansible` is an open source community project sponsored by Red Hat, it's the simplest way to automate IT, the suite includes software provisioning, configuration management, and application deployment functionality.
+
+While `Jenkins` is an open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration, and continuous delivery. 
+
+
+##### Reqiurements
+For this project execution, the following components will be required.
+1. Infrastructure - AWS
+2. Jenkins-Ansible Server - Ubuntu
+3. Webservers - 2 Linux RedHat Enterprise
+4. Webservers (UAT) - 2 Linux RedHat Enterprise
+5. Database Sever - Linux RedHat Enterprise
+6. Storage Server - Linux RedHat Enterprise
+7. Load Balancer Server - Ubuntu
+8. Declarative Language - YAML
+9. Code Repository - GitHub
+10. Stable network connection
+11. Access to the terminal
+12. VS Code + Remote Development Etension
+13. A user account with sudo privileges
+14. A Laptop or PC to serve as a client
+
+
+##### Prerequisites
+- Knowledge of how to create an EC2 Instance and how to connect to it. For guide on this, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/Other-Projects/blob/main/Project%204/README.md)
+- Understanding of basic Unix command knowledge. For guide on this, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/Other-Projects/blob/main/Project%201-Linux_Pracice_Project/README.md)
+- How to setup a continous Integration system with Jenkins. For guide on this, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/blob/main/Continuous%20Integration%20with%20Jenkins/README.md)
+- How to setup an Ansible Automate Project. For guide on this, please visit my earlier documentation [here](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/edit/main/Project%2011-Ansible-Automate-Project/README.md)
+
+
 
 ## Jenkins job enhancement
 
-Before we begin, let us make some changes to our Jenkins job - now every new change in the codes creates a separate directory which is not very convenient when we want to run some commands from one place. Besides, it consumes space on Jenkins server with each subsequent change. Let us enhance it by introducing a new Jenkins project/job - we will require `Copy Artifact` plugin.
+Before we begin, let us make some changes to our earlier Jenkins job - now every new change in the codes creates a separate directory which is not very convenient when we want to run some commands from one place. Besides, it consumes space on Jenkins server with each subsequent change. Let us enhance it by introducing a new Jenkins project/job - we will require `Copy Artifact` plugin.
 
 
 ##### Creating a new directory in the `Jenkins-Ansible` server
@@ -312,8 +342,8 @@ Update the inventory ansible-config-mgt/inventory/uat.yml file with IP addresses
 
 ```
 [uat-webservers]
-<Web1-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
-<Web2-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
+<Web1-UAT-Server-Private-IP-Address> ansible_ssh_user=ec2-user
+<Web2-UAT-Server-Private-IP-Address> ansible_ssh_user=ec2-user
 ``` 
 
 
@@ -321,7 +351,7 @@ Update the inventory ansible-config-mgt/inventory/uat.yml file with IP addresses
 
 
 ##### Editing Ansible configuration file
-In /etc/ansible/ansible.cfg file, we will uncomment `roles_path` string and provide a full path to our roles directory `roles_path` = `/home/ubuntu/ansible-config-artifactg/roles` so Ansible could know where to find configured roles.
+In /etc/ansible/ansible.cfg file, we will uncomment `roles_path` string and provide a full path to our roles directory `roles_path` = `/home/ubuntu/ansible-config-artifact/roles` so Ansible could know where to find configured roles.
 
 
 This will be done with a text editor such as `vi` text editor using the command `sudo vi /etc/ansible/ansible.cfg`
@@ -333,7 +363,120 @@ For guide on how to use the vi text editor click [here] (https://www.tutorialspo
 <img width="794" alt="roles_path" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3c13b465-3c8f-4568-86ae-bc95bc5ba11e">
 
 
+##### Configuring `main.yml`
+It is time to start adding some logic to the webserver role. Go into tasks directory, and within the `main.yml` file, start writing configuration tasks to do the following:
 
+
+- Install and configure `Apache` (httpd service)
+- Clone Tooling website from GitHub `https://github.com/<your-name>/tooling.git`.
+- Ensure the tooling website code is deployed to /var/www/html on each of 2 UAT Web servers.
+- Make sure `httpd` service is started
+
+
+  All these will be executed with the following lines of code
+
+```
+  ---
+- name: install apache
+  become: true
+  ansible.builtin.yum:
+    name: "httpd"
+    state: present
+
+- name: install git
+  become: true
+  ansible.builtin.yum:
+    name: "git"
+    state: present
+
+- name: clone a repo
+  become: true
+  ansible.builtin.git:
+    repo: https://github.com/AndromedaIsComingg/tooling.git
+    dest: /var/www/html
+    force: yes
+
+- name: copy html content to one level up
+  become: true
+  command: cp -r /var/www/html/html/ /var/www/
+
+- name: Start service httpd, if not started
+  become: true
+  ansible.builtin.service:
+    name: httpd
+    state: started
+
+- name: recursively remove /var/www/html/html/ directory
+  become: true
+  ansible.builtin.file:
+    path: /var/www/html/html
+    state: absent
+```
+
+## Reference 'Webserver' role
+
+Within the `static-assignments` folder, create a new assignment file for uat-webservers `uat-webservers.yml`. This is where you will reference the role created earlier.
+
+```
+---
+- hosts: uat-webservers
+  roles:
+     - webserver
+```
+
+
+<img width="580" alt="uat assignmnts" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/e4a8433a-c620-48a1-9720-8f9c56e605db">
+
+
+Remember that the entry point to our ansible configuration is the `site.yml` file. Therefore, you need to refer your `uat-webservers.yml` role inside `site.yml` just like we did with with `common-del.yml` earlier on. So our `site.yml` file will be updated as below.
+
+
+```
+---
+- hosts: all
+- import_playbook: ../static-assignments/common.yml
+
+- hosts: uat-webservers
+- import_playbook: ../static-assignments/uat-webservers.yml
+
+```
+
+## Commit & Test
+
+Commit your changes, create a Pull Request and merge them to master branch just like we did while installing and removing `wireshark` earlier, make sure webhook triggered two consequent Jenkins jobs(`ansible` and `save_artifacts`), they ran successfully and copied all the files to your Jenkins-Ansible server into /home/ubuntu/ansible-config-artifact/ directory.
+
+
+<img width="1275" alt="UAT jenkins builds" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/31e2dc19-3eb2-4032-8ec7-7f158f7d751f">
+
+
+let us also check if files have been updated in the directory `/home/ubuntu/ansible-config-artifact`
+
+
+<img width="615" alt="files check 2" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3c42d5c9-5884-4fb4-bd50-c15edd436d6e">
+
+
+
+Now run the playbook against your `uat` inventory with the following commands and see what happens.
+
+
+```
+cd /home/ubuntu/ansible-config-artifact
+
+ansible-playbook -i inventory/uat.yml playbooks/site.yml
+```
+
+<img width="970" alt="uat installed" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/b2d9e253-435e-4a21-a0a5-2b2622aea90b">
+
+
+Since we have qa successfull play, we should be able to see both of your UAT Web servers configured and you can try to reach them from our browser using:
+
+
+`http://<Web1-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php`
+
+or
+
+
+`http://<Web2-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php`
 
 
 sudo vi /etc/ansible/ansible.cfg 
