@@ -501,7 +501,7 @@ Seeing the web page above means that:
 
 - `Ansible` has successfully performed Automation and carried out the following
   1. Configured our servers and hosts in the iventory
-  2. Configured a `playbook` file `site.yml` to refactor the static assignments `/static-assignments/common.yml` and `/static-assignments/uat-webservers.yml`
+  2. Configured a `playbook` file `site.yml` to import the static assignments `/static-assignments/common.yml` and `/static-assignments/uat-webservers.yml`
   3. Configured the static assignments `/static-assignments/uat-webservers.yml` to the role `/task/main.yml'
 
  Ansible performed the following actions: 
