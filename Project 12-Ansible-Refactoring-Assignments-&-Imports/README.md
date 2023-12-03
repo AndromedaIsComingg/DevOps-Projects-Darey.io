@@ -1,10 +1,12 @@
-# Ansible Refactoring & Static Assignments (Imports and Roles)
+# Ansible Refactoring, Assignments & Imports.
 
 `Refactoring` is the process of restructuring code, while not changing its original functionality. The goal of refactoring is to improve internal code by making many small changes without altering the code's external behavior.
 
 `Ansible` is an open source community project sponsored by Red Hat, it's the simplest way to automate IT, the suite includes software provisioning, configuration management, and application deployment functionality.
 
 While `Jenkins` is an open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration, and continuous delivery. 
+
+### Ansible Refactoring & Static Assignments (Imports and Roles)
 
 
 ##### Reqiurements:
