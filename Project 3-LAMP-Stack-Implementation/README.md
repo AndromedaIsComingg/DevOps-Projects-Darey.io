@@ -103,6 +103,12 @@ Project 3
 ##### Changes were written and vim was exited with the command ":wq!"
 <img width="238" alt="adding php code" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/71a580de-64a4-454d-8644-cc0a15ceee2e">
 
+
+![php ](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/a004d7cb-a4ad-4f65-9e90-7e2d7bfa0293)
+
+
+
+
 ##### Removing the Created PHP file
 ##### After confirming all relevant information via the PHP file, the newly created PHP file was further removed
 ##### as it contains sensitive information about the PHP environment and the Ubuntu Server.
