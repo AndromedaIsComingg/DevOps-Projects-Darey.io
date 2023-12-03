@@ -470,6 +470,8 @@ ansible-playbook -i inventory/uat.yml playbooks/site.yml
 
 Since we have qa successfull play, we should be able to see both of your UAT Web servers configured and you can try to reach them from our browser using:
 
+Note: Please ensure that port 80 is permitted from the `inbound rules` of the security group of the UAT web servers (web1-UAT & web2-UAT). This is because by default Apache uses port 80.
+
 
 `http://<Web1-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php`
 
@@ -479,17 +481,31 @@ or
 `http://<Web2-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php`
 
 
-sudo vi /etc/ansible/ansible.cfg 
-
-/home/ubuntu/ansible-config-artifactg/roles
+<img width="1245" alt="home page" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/f1b1a785-4f0d-4cea-af3a-722045d9c5cc">
 
 
+Seeing the web page above means that:
 
-/home/ubuntu/ansible-config-artifact/inventory/dev.yml
-
-
-
+- `Jenkins` has successfully performed the job of Continuous Integration and Continuous Delivery
+  1. By serving as a gateway between GitHub and our Server
+  2. Copying artifacts from one job to another using the `Copy Artifact` plugin
+  3. Storing the copied artifacts on our server.
  
+
+- `Ansible` has successfully performed Automation and carried out the following
+  1. Configured our servers and hosts in the iventory
+  2. Configured a `playbook` file `site.yml` to refactor the static assignments `/static-assignments/common.yml` and `/static-assignments/uat-webservers.yml`
+  3. Configured the static assignments `/static-assignments/uat-webservers.yml` to the role `/task/main.yml'
+
+ Ansible performed the following actions: 
+- Installed and configure Apache (httpd service).
+- Cloned Tooling website from GitHub.
+- Ensured the tooling website code is deployed to /var/www/html on each of 2 UAT Web servers.
+- Made sure httpd service is started.
+
+
+ ---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
+
 
 
 
