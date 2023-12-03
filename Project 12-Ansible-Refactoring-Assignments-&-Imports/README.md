@@ -511,6 +511,12 @@ Seeing the web page above means that:
 - Made sure httpd service is started.
 
 
+Now the new architechture looks  like this
+
+
+<img width="922" alt="Screen Shot 2023-12-03 at 9 32 04 AM" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/eba3b3fb-8fdc-41eb-ac96-4d491df634e3">
+
+
  ---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
 
 
