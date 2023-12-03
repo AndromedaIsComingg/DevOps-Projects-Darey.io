@@ -1,11 +1,13 @@
 # Ansible Refactoring & Static Assignments (Imports and Roles)
 
+`Refactoring` is the process of restructuring code, while not changing its original functionality. The goal of refactoring is to improve internal code by making many small changes without altering the code's external behavior.
+
 `Ansible` is an open source community project sponsored by Red Hat, it's the simplest way to automate IT, the suite includes software provisioning, configuration management, and application deployment functionality.
 
 While `Jenkins` is an open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration, and continuous delivery. 
 
 
-##### Reqiurements
+##### Reqiurements:
 For this project execution, the following components will be required.
 1. Infrastructure - AWS
 2. Jenkins-Ansible Server - Ubuntu
@@ -37,7 +39,7 @@ Before we begin, let us make some changes to our earlier Jenkins job - now every
 
 
 ##### Creating a new directory in the `Jenkins-Ansible` server
-This directory will be named `ansible-config-artifact, this will be created in the home directory `/home/ubuntu/ansible-config-artifact` using the command `sudo mkdir /home/ubuntu/ansible-config-artifact`. In this directory, we will be storing all artifacts after each build.
+This directory will be named `ansible-config-artifact`, this will be created in the home directory `/home/ubuntu/ansible-config-artifact` using the command `sudo mkdir /home/ubuntu/ansible-config-artifact`. In this directory, we will be storing all artifacts after each build.
 
 
 ##### Granting permissions to the directory
@@ -104,7 +106,7 @@ Checking Build in the `save_artifacts` job
 
 ##### CHecking to confirm the copied files
 
-These files will be founds the the directory `/home/ubuntu/ansible-config-artifact`. We will check with the command `sudo ls /home/ubuntu/ansible-config-artifact`
+These files will be found the the directory `/home/ubuntu/ansible-config-artifact`. We will check with the command `sudo ls /home/ubuntu/ansible-config-artifact`
 
 
 <img width="567" alt="checking files" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/fd09fb7d-93cc-452d-bb63-e4f5a079384d">
@@ -163,7 +165,7 @@ The code above uses built in `import_playbook` Ansible module.
 
 Our overall folder structure in the root of the repository should look like this
 
-
+```
 ├── static-assignments
 │   └── common.yml
 ├── inventory
@@ -173,6 +175,7 @@ Our overall folder structure in the root of the repository should look like this
     └── prod
 └── playbooks
     └── site.yml
+```
 
 ##### Run ansible-playbook command against the dev environment
 
@@ -246,7 +249,7 @@ We will receive a prompt to compare and pull, afterwhich we will click on "Creat
 
 ##### Checking branch main to confirm that files and folders have been updated
 
-Once the push is succesfull, we expect to have the files in the Github repository updated as such
+Once the push is successful, we expect to have the files in the Github repository updated as such
 
 
 We should also confirm that the changes in the Github repository has trigger a build in the Jenkins console
@@ -319,6 +322,7 @@ We have our nice and clean dev environment, so let us put it aside and configure
 - Create the following folder/files structure
 
 
+```
 └── webserver
     ├── README.md
     ├── defaults
@@ -330,6 +334,7 @@ We have our nice and clean dev environment, so let us put it aside and configure
     ├── tasks
     │   └── main.yml
     └── templates
+```
 
 
 <img width="978" alt="folder structure" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/f87f15aa-4a93-495a-868c-3fe3b3a762b1">
@@ -357,10 +362,10 @@ In /etc/ansible/ansible.cfg file, we will uncomment `roles_path` string and prov
 This will be done with a text editor such as `vi` text editor using the command `sudo vi /etc/ansible/ansible.cfg`
 
 
-For guide on how to use the vi text editor click [here] (https://www.tutorialspoint.com/unix/unix-vi-editor.htm)
+For guide on how to use the vi text editor click [here](https://www.tutorialspoint.com/unix/unix-vi-editor.htm)
 
 
-<img width="794" alt="roles_path" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3c13b465-3c8f-4568-86ae-bc95bc5ba11e">
+<img width="911" alt="roles_path2" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/465734c2-3c03-4a8f-8615-17780109d510">
 
 
 ##### Configuring `main.yml`
@@ -468,7 +473,7 @@ ansible-playbook -i inventory/uat.yml playbooks/site.yml
 <img width="970" alt="uat installed" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/b2d9e253-435e-4a21-a0a5-2b2622aea90b">
 
 
-Since we have qa successfull play, we should be able to see both of your UAT Web servers configured and you can try to reach them from our browser using:
+Since we have a successful play, we should be able to see both of your UAT Web servers configured and you can try to reach them from our browser using:
 
 Note: Please ensure that port 80 is permitted from the `inbound rules` of the security group of the UAT web servers (web1-UAT & web2-UAT). This is because by default Apache uses port 80.
 
