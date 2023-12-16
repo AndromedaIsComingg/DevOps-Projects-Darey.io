@@ -498,7 +498,7 @@ ansible-playbook -i inventory/uat.yml playbooks/site.yml
 
 ### BLOCKER CAUTION!!!
 
-Please note that if your play throws an error about the `ansible.builtin.include_tasks` module as shows below
+Please note that if your play throws an error about the `ansible.builtin.include_tasks` module as shown below
 
 ![Alt text](images/Blocker.png)
 
