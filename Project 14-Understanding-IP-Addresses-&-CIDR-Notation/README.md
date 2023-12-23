@@ -35,6 +35,17 @@ Classless Inter-Domain Routing (CIDR) is an IP address allocation method that im
 
 
 
+![CIDR calculator](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/ba95aedc-6ab9-4dd4-a283-e2ae7e29ad9d)
+
+
+
+##### IP Address Aggregator
+
+This is a utility developed to automated minimization process and convert bunch of IPv4 addresses into smallest continous range(s) possible. IP aggregation is commonly performed by network engineers working with BGP & routers. This utility will help webmasters to configure server firewalls, apache .htaccess files, address masks and so on.
+
+
+
+
 
 
 
