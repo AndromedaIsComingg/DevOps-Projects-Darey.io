@@ -60,7 +60,71 @@ Here, classes A,B,C offers addresses for networks of three distinct network size
 ![CIDR Class strt end](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/7ac38069-e26b-4447-8635-74d1ede2d5e9)
 
 
+##### Let's see each of the network classes in details:
 
+##### Class A Network
+
+This IP address class is used when there are a large number of hosts. In a Class A type of network, the first 8 bits (also called the first octet) identify the network, and the remaining 24 bits for the host into that network.
+
+An example of class A address is 102.168.212.226. Here, "102" helps you identify the network and 168.212.226 identify the host.
+
+Class A address 127.0.0.0 to 127.255.255.255 cannot be used and is reserved for loopback and diagnostic functions.
+
+##### Class B Network
+
+In a B class IP address, the binary addresses start with 10. In this IP address, the class decimal number can be between 128 to 191. The number 127 is reserved for loopback which is used for internal testing on local machine. The first 16 bits (know as two octets) help you identify the network. The other remaiming 16 bits helps you identify the host within the network.
+
+An example of Class B address is 168.212.226.204 where 168.212 identifies te network and 226.204 identifies the host
+
+##### Class C Network
+
+Class C is a type of IP address that is used for small networks. In this class, three octets are used to identify the network. the IP range between 192 to 223
+
+In this type of network addressing method, the first two bits are set to be one, and the third bit is set to be 0, which makes the first 24 bits of the address and the remaining bit as host address. Mostly local area network use Class C IP address to connect with the network.
+
+Example for a class C IP address is 192.168.178.1
+
+##### Class D Network
+
+Class D addresses are only used for multicasting applications. Class D is never used for regular networking operations. This class addresses the first three bits set to "1" and their fourth bit set to use for "0". Class D addresses are 32-bit network addresses. All the values within the range are used to identify multicast groups uniquely.
+
+Therefore there is no requirement to extract the host addressfrom the IP address, so Class D does not have anuy subnet mask. Example for a Class D IP address is 227.21.6.173
+
+##### Class E Network
+
+Class E address is defined by including the starting four network address bits as, which allows you to insorporate addresses from 240.0.0.0 to 255.255.255.255. However, E class is reserverd, and its usage is never defined. herefor, many network implementations discard these addresses as undefined or illegal.
+
+Example for a Class E IP address is 243.164.89.28
+
+Limitations of classful IP addressing;
+
+Risk of running out of address space soon. Class boundaries did not encourage efficient allocation of address space rule for assigning network ID. The Network ID will be assigned based on the below given rules:
+
+The network ID cannot start with 127 because 127 belongs to class A address and its reserved for internal loopback functions. All bits of Network ID set to 1 are reserved for use as an IP broadcast address and cannot be used. All bits of network ID are set to 0. They are used to denote a particular host on the local network and should not be routed.
+
+## ADVANCED TOPICS IN IP ADDRESSING
+
+Advanced topic in TCP/IP networking involve the study of advanced technologies and techniques for managing and optimizing networks performances.
+
+These may include Routing Protocal, which are used to exchange information about network destinations between devices on a network. They are an important components of advanced TCP/IP networking topics, as they play a key role in determining the best path for data to travel from one device to another.
+
+`Virtual Private Networks [VPNs]`, VPN stands for "Virtual Private Network" and describes the opportunity to establish a protected network connection when using public networks. VPNs encrypt your internet traffic and disguise your online identity. This makes it more difficult for third parties to track your activities online and steal data. The encryption takes place in real time.
+
+
+`Quality of Services [QoS]`,  is the use of mechanisms or technologies that work on a network to control traffic and ensure the performance of critical applications with limited network capacity. It enables organizations to adjust their overall network traffic by prioritizing specific high-performance applications.
+
+QoS is typically applied to networks that carry traffic for resource-intensive systems. Common services for which it is required include internet protocol television (IPTV), online gaming, streaming media, videoconferencing, video on demand (VOD), and Voice over IP (VoIP). 
+
+Using QoS in networking, organizations have the ability to optimize the performance of multiple applications on their network and gain visibility into the bit rate, delay, jitter, and packet rate of their network. This ensures they can engineer the traffic on their network and change the way that packets are routed to the internet or other networks to avoid transmission delay. This also ensures that the organization achieves the expected service quality for applications and delivers expected user experiences.
+
+As per the QoS meaning, the key goal is to enable networks and organizations to prioritize traffic, which includes offering dedicated bandwidth, controlled jitter, and lower latency. The technologies used to ensure this are vital to enhancing the performance of business applications, wide-area networks (WANs), and service provider networks.
+
+
+
+`Domain Name System [DNS]`, which is a hierarchial, distributed database that is used to translate human-readable domain names into machine-readable IP addresses. It turns domain names into IP addresses, which browsers use to load internet pages. Every device connected to the internet has its own IP address, which is used by other devices to locate the device. DNS servers make it possible for people to input normal words into their browsers, such as Fortinet.com, without having to keep track of the IP address for every website.
+
+
+`Network Address Translation [NAT]`, stands for network address translation. It’s a way to map multiple private addresses inside a local network to a public IP address before transferring the information onto the internet. Organizations that want multiple devices to employ a single IP address use NAT, as do most home routers. If you’re connecting from your home right now, chances are your cable modem or DSL router is already providing NAT to your home.
 
 
 
