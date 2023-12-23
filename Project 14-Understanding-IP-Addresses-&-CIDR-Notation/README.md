@@ -26,6 +26,12 @@ It also helps you to reduce the size of the routing tables, which is stored in r
 ![subnet and mask](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/026c7669-067a-4120-9321-ea4ab8cdeff7)
 
 
+A `Subnet Mask` is a 32 bits address used to distinguish between a network address and a host address in IP address. A subnet masks identifies which part of an IP address is the network address and the host address. They are not shown inside the data packets traversing the internet. They carry the destination IP address, which a router will match with a subnet
+
+
+##### CIDR Notation and Address Aggregation
+
+Classless Inter-Domain Routing (CIDR) is an IP address allocation method that improves data routing efficiency on the internet. Every machine, server, and end-user device that connects to the internet has a unique number, called an IP address, associated with it. Devices find and communicate with each other by using these IP addresses. Organisations use CIDR to allocate IP addreses flexibly and efficiently in their networks. It represent blocks of IP addresses, to get the number of addresses a CIDR block represent, you calculate 2^(32-prefix), where prefix is the number after the slash. For instance /16 contains 2^(32-16) = 2^16 = 65,536 
 
 
 
