@@ -127,6 +127,9 @@ As per the QoS meaning, the key goal is to enable networks and organizations to 
 `Network Address Translation [NAT]`, stands for network address translation. It’s a way to map multiple private addresses inside a local network to a public IP address before transferring the information onto the internet. Organizations that want multiple devices to employ a single IP address use NAT, as do most home routers. If you’re connecting from your home right now, chances are your cable modem or DSL router is already providing NAT to your home.
 
 
+## Congratulations!!!
+With this documentation, we now have a proper understading of `IP addresses`, and we have successfully demystified `CIDR Notations`.
+
 
 ---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
 
