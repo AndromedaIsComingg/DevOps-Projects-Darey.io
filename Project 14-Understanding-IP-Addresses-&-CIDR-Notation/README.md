@@ -44,6 +44,21 @@ Classless Inter-Domain Routing (CIDR) is an IP address allocation method that im
 This is a utility developed to automated minimization process and convert bunch of IPv4 addresses into smallest continous range(s) possible. IP aggregation is commonly performed by network engineers working with BGP & routers. This utility will help webmasters to configure server firewalls, apache .htaccess files, address masks and so on.
 
 
+##### IP Address Classes and Private IP Address Ranges
+
+Classful addressing is a network addressing the internets architecture from 1981 till Classless Inter-Domain Routing was introduced in 1993
+
+This addressing method divides the IP addresses into five seperate classes based on four address bits.
+
+Here, classes A,B,C offers addresses for networks of three distinct network sizes. Class D is only used for multicast, and Class E reserverd exclusively for experimental purposes.
+
+
+![CIDR classes](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/cfb2cae8-23bf-4f2f-a996-98fba8025831)
+
+
+
+![CIDR Class strt end](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/7ac38069-e26b-4447-8635-74d1ede2d5e9)
+
 
 
 
