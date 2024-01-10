@@ -25,11 +25,16 @@ A default VPC, which Amazon provides in each region is like a pre-built house in
 ### Creating a new VPC
 To create a new VPC, choose the VPC only option. Enter "first-vpc" as the name tag and "10.0.0.0/16" as the IPv4 CIDR. The "10.0.0.0/16" will be the primary IPv4 block and you can add IPv4 block e.g., "100.64.0.0/16".
 
-![Alt text](Images/crvpc.png)
+
+
+<img width="655" alt="3" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/b672b35f-9088-4494-8b92-3f20106beb43">
+
 
 Once VPC is created, it's assigned with a vpc-id and there is a route table created that serves as the main route table.
 
-![Alt text](Images/crdvpc.png)
+
+![Uploading 4.png…]()
+
 
 Although you have a VPC and a route table now, you won't be able to create an EC2 instance or put anything inside yet as it needs subnets to be able to do so.
 
