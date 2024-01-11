@@ -2,11 +2,18 @@
 
 ## VPC Creation and Subnet Configuration
 
-### Amazon VPC 
+### WHat is an Amazon VPC?
+
+With Amazon Virtual Private Cloud (Amazon VPC), you can launch AWS resources in a logically isolated virtual network that you've defined. This virtual network closely resembles a traditional network that you'd operate in your own data center, with the benefits of using the scalable infrastructure of AWS.
 
 An Amazon Virtual Private Cloud (VPC) is your own private section of the Amazon cloud where you can place and manage your resources such as servers or databases. You have control over who can go in and out.
 
-### Steps in creating a VPC and configuring core network services includes:
+The following diagram shows an example VPC. The VPC has one subnet in each of the Availability Zones in the Region, EC2 instances in each subnet, and an internet gateway to allow communication between the resources in your VPC and the internet.
+
+<img width="522" alt="dia" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/e5decf48-0a3a-4a79-af85-b9b62c05ddb4">
+
+
+## Procedures in creating a VPC and configuring core network services includes:
 - The Default VPC
 - Creating a new VPC
 - Creating and configuring subnets
@@ -219,8 +226,13 @@ Go to subnet associations tab and click on edit subnet associations.
 ### The difference between Security Groups and Network Access Control Lists
 Security groups and network access control lists (ACLs) are both important tools for securing your network on the AWS cloud, but they serve different purposes and have different use cases.
 
-![Alt text](Images/sg.png)
 
-Security group acts as a virtual firewall for your EC2 instances to control incoming and outgoing traffic. Both inbound and outbound rules control the flow of traffic to and from your instance, respectively. It helps you secure your cloud environment by controlling how traffic will be allowed into your EC2 machines. With security groups, you can ensure that all the traffic that flows at the instance level is only through your established ports and protocols. When launching an EC2 instance, you need to assign it to a particular security group. You can add rules to each security group that allow traffic to or from designated services including associated instances.
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/2f5adbdd-70fe-4d90-99d9-333a4c17c496)
 
-Generally, security groups provide an essential layer of security for your cloud resources by allowing you to define and manage access control policies.
+
+**Security group acts as a virtual firewall for your EC2 instances to control incoming and outgoing traffic. Both inbound and outbound rules control the flow of traffic to and from your instance, respectively. It helps you secure your cloud environment by controlling how traffic will be allowed into your EC2 machines. With security groups, you can ensure that all the traffic that flows at the instance level is only through your established ports and protocols. When launching an EC2 instance, you need to assign it to a particular security group. You can add rules to each security group that allow traffic to or from designated services including associated instances.**
+
+
+
+ ---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
+
