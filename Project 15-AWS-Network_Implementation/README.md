@@ -140,35 +140,46 @@ Now that we ahve our Internet Gateway, we need to give directions to our resourc
 - Give it a name.
 - Select your previously created VPC.
 
-![Alt text](Images/myrt.png)
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/e0564423-c61d-4ec7-a8a7-6345e06b089c)
 
 Once route table have been created;
 - Select the created route table.
 - Click on Action drop down button and select edit route.
 - Add a default route to the Internet Gateway (IGW).
 
-![Alt text](Images/d.png)
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/54b8138d-0ce2-4806-93fe-d5bdb4369a8d)
+
+
 
 - Select Internet Gateway and choose the previously created IGW.
 
-![Alt text](Images/igwrt.png)
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/a4a505d9-9a83-4778-bf70-43e85302a96f)
 
-![Alt text](Images/comrt.png)
+
+
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/4146fd95-b095-4f13-a6ad-d54c7763ee85)
+
+
 
 - Go to the Subnet associations tab.
 - Click on Edit subnet association.
 
-![Alt text](Images/sa.png)
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/afc3b1e5-f1bb-4c0c-882c-22abff03706a)
+
 
 - Select the public subnets and click on save associations.
+- 
 
-![Alt text](Images/sva.png)
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/4e465cd7-d027-4bcb-8986-b12717273d47)
+
 
 Now that the VPC is ready, you can an EC2 instance in public subnets if they need internet access or in private if they don't.
 
 Below is created Route table for private but subnets and routes are not yet been attached to it.
 
-![Alt text](Images/prt.png)
+
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/c693ab74-bf46-46b6-aa41-4f5e0fefbbbe)
+
 
 ## NAT Gateway and Private Subnets
 In AWS VPC, private subnets are secluded areas where you can place resources that should not be directly exposed to the internet. NAT Gateway comes in to play when these resources need to access the internet for updates or downloads.
@@ -181,23 +192,28 @@ A Network Address Translation (NAT) Gateway is used to enable instances present 
 - Click on NAT Gateways.
 - Click on Create Nat gateway.
 
-![Alt text](Images/nat.png)
+<img width="1004" alt="nat" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/80b41c46-4201-4d34-8d96-730148612e49">
+
 
 - Name your NAT gateway.
 - Choose one of the private subnets created previously.
 - Allocate Elastic IP as is required for the creation of NAT gateway.
 
-![Alt text](Images/natcr.png)
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/3b74ee2b-8e9a-4ce1-8e07-13e08c05c590)
+
 
 Now, go to the route table menu and create a route table for the private subnets.
 
 Edit the route table and add a default route to the NAT Gateway.
 
-![Alt text](Images/natr.png)
+<img width="1001" alt="nat r" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/1427ebce-44f0-4030-91e8-2c266ab991a1">
+
 
 Go to subnet associations tab and click on edit subnet associations.
 
-![Alt text](Images/nats.png)
+![image](https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/628dac13-e759-40af-814f-41f039996505)
+
+
 
 ## Security Group and Network ACLs
 ### The difference between Security Groups and Network Access Control Lists
