@@ -33,8 +33,7 @@ To create a new VPC, choose the VPC only option. Enter "first-vpc" as the name t
 Once VPC is created, it's assigned with a vpc-id and there is a route table created that serves as the main route table.
 
 
-![Uploading 4.png…]()
-
+<img width="850" alt="4" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/6e07dac0-d5fe-477c-b2dc-2d6418635f9a">
 
 Although you have a VPC and a route table now, you won't be able to create an EC2 instance or put anything inside yet as it needs subnets to be able to do so.
 
@@ -43,8 +42,7 @@ Although you have a VPC and a route table now, you won't be able to create an EC
 
 Subnets are a range of IP addresses and a section in your VPC that allows you to group resources.It can have different security or operations needs and can be both public and private. See the illustration below:
 
-![Alt text](Images/sub.png)
-
+<img width="789" alt="subnet" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/286a46b3-df5e-433a-bd42-e79491d29a2a">
 **Subnet name      AZ        CIDR block**
 
 subnet-public1a eu-north-1a 10.0.11.0/24
@@ -60,9 +58,11 @@ To create subnets, follow the below steps:
 - Select the zone
 - choose your IPv4 CIDR block. Ensure you plan your subnets CIDR blocks to avoid overlapping CIDR.
 
-![Alt text](Images/subn.png)
+<img width="774" alt="sn" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/d3d3a834-faaa-479f-9017-c1f5df34b114">
 
-![Alt text](Images/subncr.png)
+
+<img width="985" alt="sncreated" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/0aa29ed0-80ce-42e5-a0b0-5bf92391684a">
+
 
 Now, you can deploy EC2 instances into VPC by selecting one of the subnets.
 
