@@ -102,7 +102,8 @@ Subnets are still private but you'll need the following to make it work as publi
 - Route table with default route towards the IGW.
 - Public IP assigned to the AWS resources.
 
-![Alt text](Images/ig.png)
+<img width="1026" alt="int gat" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/6402559b-6726-4640-96ac-6285ce2aaf12">
+
 
 To do this:
 - Go to VPC.
@@ -110,7 +111,8 @@ To do this:
 - Click on 'Create internet gateway'.
 - Add a name tag.
 
-![Alt text](Images/myigw.png)
+<img width="1002" alt="int gate w" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/25f6f181-1f05-427f-b2ac-17a74a24072f">
+
 
 Next is to attach the IGW to your VPC.
 - Go to actions and click on the drop down arrow.
@@ -118,11 +120,14 @@ Next is to attach the IGW to your VPC.
 - Under available VPC, select your VPC.
 - Click on attach internet gateway.
 
-![Alt text](Images/vpcata.png)
+<img width="1002" alt="vp caa" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/94b8d0b7-1806-46ff-8756-02b12dbe2468">
 
-![Alt text](Images/myvpc.png)
 
-![Alt text](Images/attachedigw.png)
+<img width="1008" alt="vpc m" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/5c4f21a4-5c10-4a5b-815b-fab73179248a">
+
+
+<img width="1000" alt="att" src="https://github.com/AndromedaIsComingg/DevOps-Projects-Darey.io/assets/140917780/6f64c547-e579-4eb6-99cb-1d4b74a739fb">
+
 
 ## What is a Routing Table?
 A routing table is a data file that is used to determine where data packets travelling over an IP network will be directed.
